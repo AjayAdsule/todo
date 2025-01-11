@@ -1,8 +1,54 @@
-import { SignFormSchema } from "@/types/authTypes/userSignUpIn.type";
-import { useForm } from "react-hook-form";
+import { setAxiosAuthHeader } from "@/lib/axios/axiosConfig";
+import globalPostRequest from "@/lib/axios/services/globalPostRequest";
+import URLS from "@/lib/axios/URLS";
 
+import {
+  SignFormSchema,
+  SignUpType,
+} from "@/types/authTypes/userSignUpIn.type";
+import { UserLoginResponse } from "@/types/user/userResponse";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { z } from "zod";
+
+type SigninResponse = {
+  token: string;
+  success: boolean;
+  user: UserLoginResponse;
+};
+const signInSchema = z.object({
+  email: z.string().email("Invalid email format"),
+  password: z
+    .string()
+    .min(4, "Password must be at least 4 characters")
+    .max(20, "Password must be at most 20 characters"),
+});
 export default function useSignIn() {
-  const { control } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpType>({
+    resolver: zodResolver(signInSchema),
+  });
+
+  const navigate = useNavigate();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: (data: SignUpType) =>
+      globalPostRequest<SignUpType, SigninResponse>({ url: URLS.signIn, data }),
+    onSuccess: (data) => {
+      if (data.token && data.success) {
+        const token = data.token;
+        localStorage.setItem("token", token);
+        setAxiosAuthHeader(token);
+        navigate("/todo/home");
+      }
+    },
+  });
+
   const signFormSchema: SignFormSchema[] = [
     {
       name: "email",
@@ -18,8 +64,16 @@ export default function useSignIn() {
     },
   ];
 
+  const onSignin = (data: SignUpType) => {
+    mutate(data);
+  };
+
   return {
     signFormSchema,
     control,
+    handleSubmit,
+    onSignin,
+    isLoading: isPending,
+    errors,
   };
 }

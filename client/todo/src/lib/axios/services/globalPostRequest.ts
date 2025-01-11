@@ -12,6 +12,7 @@ const globalPostRequest = async <DataType, ResponseType>({
   options,
 }: PostRequest<DataType>): Promise<ResponseType> => {
   try {
+    console.log(import.meta.env.VITE_BASE_API_URL);
     const res = await apiRequest.post<ResponseType>(url, data, {
       headers: options,
     });

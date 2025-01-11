@@ -1,19 +1,25 @@
 import TasklystLogo from "@/components/global/TaskListLogo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { LoaderCircle } from "lucide-react";
 import { Controller } from "react-hook-form";
 import useSignIn from "../hook/useSignIn";
 
 const SignInCard = () => {
-  const { signFormSchema, control } = useSignIn();
+  const { signFormSchema, control, handleSubmit, onSignin, isLoading, errors } =
+    useSignIn();
+
   return (
     <div className=" h-fit w-[450px] rounded-lg shadow-lg p-8   flex flex-col ">
       <div className="flex justify-center">
         <TasklystLogo height="60" width="120" />
       </div>
-      <form className=" flex flex-col gap-y-4">
+      <form
+        className=" flex flex-col gap-y-4"
+        onSubmit={handleSubmit(onSignin)}
+      >
         {signFormSchema.map((form, indx) => (
-          <div key={indx} className="grid w-full max-w-sm items-center">
+          <div key={indx} className="flex flex-col  w-full max-w-sm ">
             <label
               htmlFor={form.label}
               className="after:content-['*'] after:text-red-500"
@@ -32,9 +38,20 @@ const SignInCard = () => {
                 />
               )}
             />
+            {errors[form.name] && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors[form.name]?.message}
+              </span>
+            )}
           </div>
         ))}
-        <Button>Login</Button>
+        <Button type="submit">
+          {isLoading ? (
+            <LoaderCircle className={`${isLoading && "animate-spin"}`} />
+          ) : (
+            "Login"
+          )}
+        </Button>
       </form>
     </div>
   );
