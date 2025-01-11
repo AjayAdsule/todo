@@ -1,4 +1,4 @@
-import PageContainer from "@/component/PageContainer";
+import PageContainer from "@/components/global/PageContainer";
 import SignInCard from "./component/SignInCard";
 
 const SignInPage = () => {

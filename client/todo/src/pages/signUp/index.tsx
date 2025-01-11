@@ -1,4 +1,4 @@
-import PageContainer from "@/component/PageContainer";
+import PageContainer from "@/components/global/PageContainer";
 import SignUpCard from "./components/SignUpCard";
 
 const SignUpPage = () => {

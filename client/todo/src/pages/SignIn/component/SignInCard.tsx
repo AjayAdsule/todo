@@ -1,4 +1,4 @@
-import TasklystLogo from "@/component/TaskListLogo";
+import TasklystLogo from "@/components/global/TaskListLogo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Controller } from "react-hook-form";
