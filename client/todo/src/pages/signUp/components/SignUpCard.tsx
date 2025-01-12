@@ -5,15 +5,19 @@ import { Controller } from "react-hook-form";
 import useSignUp from "../hook/useSignUp";
 
 const SignUpCard = () => {
-  const { control, signUpFormSchema } = useSignUp();
+  const { control, signUpFormSchema, errors, handleSubmit, onSignUpSubmit } =
+    useSignUp();
   return (
     <div className=" h-fit w-[450px] rounded-lg shadow-lg p-8   flex flex-col ">
       <div className="flex justify-center">
         <TasklystLogo height="60" width="120" />
       </div>
-      <form className=" flex flex-col gap-y-4">
+      <form
+        className=" flex flex-col gap-y-4"
+        onSubmit={handleSubmit(onSignUpSubmit)}
+      >
         {signUpFormSchema.map((form, indx) => (
-          <div key={indx} className="grid w-full max-w-sm items-center">
+          <div key={indx} className="flex flex-col  w-full max-w-sm ">
             <label
               htmlFor={form.label}
               className="after:content-['*'] after:text-red-500"
@@ -32,6 +36,11 @@ const SignUpCard = () => {
                 />
               )}
             />
+            {errors[form.name] && (
+              <span className="text-xs text-red-500 mt-1">
+                {errors[form.name]?.message}
+              </span>
+            )}
           </div>
         ))}
         <Button>Register</Button>
