@@ -3,8 +3,8 @@ import globalPostRequest from "@/lib/axios/services/globalPostRequest";
 import URLS from "@/lib/axios/URLS";
 
 import {
-  SignFormSchema,
-  SignUpType,
+  SignInFormSchema,
+  SignInType,
 } from "@/types/authTypes/userSignUpIn.type";
 import { UserLoginResponse } from "@/types/user/userResponse";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,15 +30,15 @@ export default function useSignIn() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUpType>({
+  } = useForm<SignInType>({
     resolver: zodResolver(signInSchema),
   });
 
   const navigate = useNavigate();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: (data: SignUpType) =>
-      globalPostRequest<SignUpType, SigninResponse>({ url: URLS.signIn, data }),
+    mutationFn: (data: SignInType) =>
+      globalPostRequest<SignInType, SigninResponse>({ url: URLS.signIn, data }),
     onSuccess: (data) => {
       if (data.token && data.success) {
         const token = data.token;
@@ -49,7 +49,7 @@ export default function useSignIn() {
     },
   });
 
-  const signFormSchema: SignFormSchema[] = [
+  const signFormSchema: SignInFormSchema[] = [
     {
       name: "email",
       label: "Email",
@@ -64,7 +64,7 @@ export default function useSignIn() {
     },
   ];
 
-  const onSignin = (data: SignUpType) => {
+  const onSignin = (data: SignInType) => {
     mutate(data);
   };
 

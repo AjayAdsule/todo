@@ -1,10 +1,10 @@
-export interface SignUpType {
+export interface SignInType {
   email: string;
   password: string;
 }
 
-export type SignFormSchema = {
-  name: keyof SignUpType;
+export type SignInFormSchema = {
+  name: keyof SignInType;
   label: string;
   type: string;
   placeholder: string;
