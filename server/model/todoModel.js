@@ -24,7 +24,7 @@ const TodoModel = new Schema({
   dueDate: {
     type: Date,
   },
-  user: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: "Users",
     required: true,
