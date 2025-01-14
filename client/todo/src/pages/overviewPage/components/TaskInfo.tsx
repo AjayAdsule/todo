@@ -1,3 +1,4 @@
+import TaskModel from "@/components/global/TaskModel";
 import TaskCard from "@/components/Task/TaskCard";
 import TaskContainer from "@/components/Task/TaskContainer";
 import useGetTaskData from "@/query/useGetTaskData";
@@ -8,6 +9,9 @@ import TaskFilter from "./TaskFilter";
 const TaskInfo = () => {
   const { data } = useGetTaskData();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const handleDialogChange = (open: boolean) => {
+    setIsOpen(open);
+  };
   return (
     <div className="mt-3">
       <div>
@@ -38,6 +42,9 @@ const TaskInfo = () => {
             )
           )}
       </div>
+      {isOpen && (
+        <TaskModel isOpen={isOpen} onOpenChange={handleDialogChange} />
+      )}
     </div>
   );
 };
