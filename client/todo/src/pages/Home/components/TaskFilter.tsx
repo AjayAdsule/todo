@@ -1,9 +1,9 @@
 import { Input } from "@/components/ui/input";
 import { InputCalender } from "./InputCalender";
 
-const Filter = () => {
+const TaskFilter = () => {
   return (
-    <div className="flex justify-between mt-4">
+    <div className="flex justify-between mt-4 items-center ">
       <div>
         <label htmlFor="Search" className="text-xs">
           Search
@@ -15,4 +15,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default TaskFilter;
