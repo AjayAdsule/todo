@@ -62,7 +62,7 @@ export const updateTodoStatus = async (req, res) => {
 export const getTodo = async (req, res) => {
   try {
     const { userId } = req;
-
+    console.log({ userId });
     const todos = await TodoModel.find({ userId });
 
     if (!todos || todos.length === 0) {

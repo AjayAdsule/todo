@@ -26,7 +26,7 @@ export const userSignin = async (req, res) => {
 
 export const userSignup = async (req, res) => {
   const { name, email, password, confirm_password } = req.body;
-  console.log({ name, email, password, confirm_password });
+
   try {
     if (password !== confirm_password) {
       return res
