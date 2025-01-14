@@ -9,7 +9,7 @@ const PageContainer = ({
 }) => {
   return (
     <div
-      className={`  px-4 h-screen  text-gray-800 text-base leading-relaxed ${className}`}
+      className={`px-8 h-screen  text-gray-800 text-base leading-relaxed ${className}`}
     >
       {children}
     </div>

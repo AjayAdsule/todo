@@ -12,4 +12,8 @@ router.post("/create-todo", verifyToken, createTask);
 router.get("/get-todo", verifyToken, getTodo);
 router.patch("/update-status", verifyToken, updateTodoStatus);
 
+router.get("/get-todo", verifyToken, getTodo);
+
+router.patch("/update-todo", verifyToken, updateTodoStatus);
+
 export default router;

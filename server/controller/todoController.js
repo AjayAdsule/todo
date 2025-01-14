@@ -68,8 +68,22 @@ export const getTodo = async (req, res) => {
     if (!todos || todos.length === 0) {
       return res.status(404).json({ message: "No todos found for this user" });
     }
+    const filterTodo = todos.reduce((acc, curr) => {
+      if (curr.status === "In-progress") {
+        acc["progress"] = acc["progress"] ? [...acc["progress"], curr] : [curr];
+      } else if (curr.status === "Pending") {
+        acc["pending"] = acc["pending"] ? [...acc["pending"], curr] : [curr];
+      } else if (curr.status === "Completed") {
+        acc["completed"] = acc["completed"]
+          ? [...acc["completed"], curr]
+          : [curr];
+      }
+      return acc;
+    }, {});
 
-    res.status(200).json({ success: true, message: "Success", todos });
+    res
+      .status(200)
+      .json({ success: true, message: "Success", todo: { ...filterTodo } });
   } catch (error) {
     return res
       .status(500)
