@@ -1,8 +1,8 @@
-import TaskContainer from "@/components/Task/TaskContainer";
-import TaskFilter from "./TaskFilter";
 import TaskCard from "@/components/Task/TaskCard";
+import TaskContainer from "@/components/Task/TaskContainer";
 import useGetTaskData from "@/query/useGetTaskData";
 import { TodosByStatus } from "@/types/task.type";
+import TaskFilter from "./TaskFilter";
 
 const TaskInfo = () => {
   const { data } = useGetTaskData();
@@ -12,11 +12,15 @@ const TaskInfo = () => {
       <div>
         <TaskFilter />
       </div>
-      <div className="flex mt-2 justify-between">
+      <div className="flex mt-2 justify-between gap-x-12">
         {data?.todo &&
           (Object.keys(data.todo) as Array<keyof TodosByStatus>).map(
             (status, index) => (
-              <TaskContainer key={index} heading={status}>
+              <TaskContainer
+                key={index}
+                heading={status}
+                className="w-2/6 rounded-3xl  "
+              >
                 {data?.todo[status].map((task) => {
                   const { title, description, dueDate, _id } = task;
                   return (

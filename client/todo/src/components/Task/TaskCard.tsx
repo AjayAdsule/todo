@@ -8,7 +8,7 @@ interface TaskCardProps {
 
 const TaskCard: React.FC<TaskCardProps> = ({ title, description, date }) => {
   return (
-    <div className="bg-white rounded-lg border max-h-[300px] w-[265px] shadow-sm  p-2">
+    <div className="bg-white rounded-lg border max-h-[300px] w-[90%] shadow-sm  p-2">
       <div className="flex items-center justify-between">
         <h4 className="font-semibold">{title}</h4>
         <EllipsisVertical size={17} />
