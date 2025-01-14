@@ -2,11 +2,12 @@ import TaskCard from "@/components/Task/TaskCard";
 import TaskContainer from "@/components/Task/TaskContainer";
 import useGetTaskData from "@/query/useGetTaskData";
 import { TodosByStatus } from "@/types/task.type";
+import { useState } from "react";
 import TaskFilter from "./TaskFilter";
 
 const TaskInfo = () => {
   const { data } = useGetTaskData();
-
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <div className="mt-3">
       <div>
@@ -29,6 +30,7 @@ const TaskInfo = () => {
                       title={title}
                       description={description}
                       date={dueDate}
+                      onClick={() => setIsOpen(true)}
                     />
                   );
                 })}

@@ -1,6 +1,7 @@
 import BaseComponent from "@/BaseComponent";
 import Layout from "@/components/global/Layout";
 import HomePage from "@/pages/Home";
+import OverviewPage from "@/pages/overviewPage";
 import SignInPage from "@/pages/SignIn";
 import SignUpPage from "@/pages/signUp";
 import { createBrowserRouter } from "react-router-dom";
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "overview",
+        element: <OverviewPage />,
+      },
+      {
+        path: "home",
         element: <HomePage />,
       },
     ],
