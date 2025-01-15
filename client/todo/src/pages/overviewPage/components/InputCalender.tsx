@@ -25,7 +25,7 @@ export function InputCalender({
           <Button
             variant={"outline"}
             className={cn(
-              "w-[240px] pl-3 text-left font-normal",
+              "w-[245px] pl-3 text-left font-normal",
               value && "text-muted-foreground"
             )}
           >

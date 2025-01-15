@@ -10,8 +10,8 @@ import { Flag } from "lucide-react";
 const TaskPriority = () => {
   return (
     <Select>
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Theme" />
+      <SelectTrigger className="">
+        <SelectValue placeholder="Priority" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="high">

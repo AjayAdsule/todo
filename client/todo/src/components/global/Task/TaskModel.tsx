@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { InputCalender } from "@/pages/overviewPage/components/InputCalender";
 import { DialogTitle } from "@radix-ui/react-dialog";
@@ -22,10 +23,13 @@ const TaskModel = ({
             <div className="w-[400px]  p-1">
               <AddTask />
             </div>
-            <div className="w-[300px] border flex flex-col gap-y-4">
+            <div className="w-[250px]  flex flex-col gap-y-4">
               <InputCalender />
               <TaskPriority />
             </div>
+          </div>
+          <div className="flex justify-end mt-2">
+            <Button>Save</Button>
           </div>
         </div>
       </DialogContent>
