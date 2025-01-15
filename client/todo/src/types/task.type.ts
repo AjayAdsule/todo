@@ -2,7 +2,7 @@ export interface Todo {
   _id: string;
   title: string;
   description: string;
-  status: "Completed" | "Pending" | "In-progress";
+  status?: "Completed" | "Pending" | "In-progress";
   dueDate: string;
   userId: string;
   createdAt: string;

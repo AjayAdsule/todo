@@ -7,10 +7,15 @@ import {
 } from "@/components/ui/select";
 import { Flag } from "lucide-react";
 
-const TaskPriority = () => {
+interface TaskPriorityProps {
+  onChange(): void;
+  value: string;
+}
+
+const TaskPriority: React.FC<TaskPriorityProps> = ({ onChange, value }) => {
   return (
-    <Select>
-      <SelectTrigger className="">
+    <Select onValueChange={onChange} value={value}>
+      <SelectTrigger>
         <SelectValue placeholder="Priority" />
       </SelectTrigger>
       <SelectContent>
