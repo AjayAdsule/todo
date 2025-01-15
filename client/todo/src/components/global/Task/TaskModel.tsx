@@ -16,7 +16,7 @@ const TaskModel = ({
   onOpenChange: (open: boolean) => void;
   type: "edit" | "new";
 }) => {
-  const { methods, onTaskSubmit } = useTask();
+  const { methods, onTaskSubmit } = useTask(type);
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="h-auto w-auto max-w-full overflow-y-auto">
