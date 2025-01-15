@@ -1,6 +1,8 @@
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
-import AddTask from "./Task/AddTask";
-import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
+import { InputCalender } from "@/pages/overviewPage/components/InputCalender";
+import { DialogTitle } from "@radix-ui/react-dialog";
+import AddTask from "./AddTask";
+import TaskPriority from "./TaskPriority";
 
 const TaskModel = ({
   isOpen,
@@ -20,7 +22,10 @@ const TaskModel = ({
             <div className="w-[400px]  p-1">
               <AddTask />
             </div>
-            <div className="w-[300px] border"></div>
+            <div className="w-[300px] border flex flex-col gap-y-4">
+              <InputCalender />
+              <TaskPriority />
+            </div>
           </div>
         </div>
       </DialogContent>
