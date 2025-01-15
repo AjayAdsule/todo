@@ -1,10 +1,6 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import AddTask from "./Task/AddTask";
+import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 
 const TaskModel = ({
   isOpen,
@@ -15,14 +11,18 @@ const TaskModel = ({
 }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="h-auto w-auto max-w-full overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </DialogDescription>
+          <DialogTitle>Edit profile</DialogTitle>
         </DialogHeader>
+        <div>
+          <div className="flex  justify-between mt-2 gap-x-3">
+            <div className="w-[400px]  p-1">
+              <AddTask />
+            </div>
+            <div className="w-[300px] border"></div>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );
