@@ -8,7 +8,7 @@ import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
-router.post("/create-todo", verifyToken, createTask);
+router.post("/create-task", verifyToken, createTask);
 router.get("/get-todo", verifyToken, getTodo);
 router.patch("/update-status", verifyToken, updateTodoStatus);
 
