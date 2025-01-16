@@ -61,17 +61,17 @@ const listItems = [
   },
   {
     title: "Workout",
-    url: "/todo/work",
+    url: "/todo/workout",
     icon: Zap,
   },
   {
     title: "Learning",
-    url: "/todo/work",
+    url: "/todo/learning",
     icon: GraduationCap,
   },
   {
     title: "Reading",
-    url: "/todo/work",
+    url: "/todo/reading",
     icon: NotebookText,
   },
 ];
