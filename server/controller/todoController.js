@@ -30,14 +30,14 @@ export const createTask = async (req, res) => {
 export const updateTodoStatus = async (req, res) => {
   try {
     const { userId } = req;
-    const { status, id } = req.body;
+    const { status, id, title, description, dueDate } = req.body;
 
     const updateTodo = await TodoModel.findOneAndUpdate(
       {
         _id: id,
         userId,
       },
-      { status },
+      { status, id, title, description, dueDate },
       { new: true }
     );
 

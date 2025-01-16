@@ -11,7 +11,7 @@ interface FormProps {
   priority?: Priority;
 }
 
-export default function useTask(type = "new", taskId?: string) {
+export default function useTask(type = "edit", taskId?: string) {
   const methods = useForm<FormProps>({
     defaultValues: {
       title: "",
@@ -26,8 +26,11 @@ export default function useTask(type = "new", taskId?: string) {
       if (type === "new") {
         const res = await apiRequest.post("/todo/create-task", data);
         return res.data;
-      } else if (type === "edit" && taskId) {
-        const response = await apiRequest.patch(`/todo/edit-task`, data);
+      } else if (type === "edit") {
+        const response = await apiRequest.patch(`/todo/update-task`, {
+          id: taskId,
+          ...data,
+        });
         return response.data;
       } else {
         throw new Error("Invalid type or missing task ID for edit");
