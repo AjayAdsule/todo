@@ -1,10 +1,10 @@
 import BaseComponent from "@/BaseComponent";
 import Layout from "@/components/global/Layout";
-import HomePage from "@/pages/Home";
 import ListDynamicPage from "@/pages/ListDynamicPage";
 import OverviewPage from "@/pages/overviewPage";
 import SignInPage from "@/pages/SignIn";
 import SignUpPage from "@/pages/signUp";
+import TodayPage from "@/pages/TodayPage";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -29,8 +29,8 @@ export const router = createBrowserRouter([
         element: <OverviewPage />,
       },
       {
-        path: "home",
-        element: <HomePage />,
+        path: "today",
+        element: <TodayPage />,
       },
       {
         path: ":list",
