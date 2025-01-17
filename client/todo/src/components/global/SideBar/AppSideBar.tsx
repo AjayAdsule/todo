@@ -57,22 +57,22 @@ const listItems = [
   {
     title: "Work",
     url: "/todo/work",
-    icon: BriefcaseBusiness,
+    icon: <BriefcaseBusiness className="text-blue-400" />,
   },
   {
     title: "Workout",
     url: "/todo/workout",
-    icon: Zap,
+    icon: <Zap className="text-red-400" />,
   },
   {
     title: "Learning",
     url: "/todo/learning",
-    icon: GraduationCap,
+    icon: <GraduationCap className="text-green-500" />,
   },
   {
     title: "Reading",
     url: "/todo/reading",
-    icon: NotebookText,
+    icon: <NotebookText className="text-amber-500" />,
   },
 ];
 
@@ -115,7 +115,7 @@ export function AppSidebar() {
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton asChild>
                         <NavLink to={item.url}>
-                          <item.icon />
+                          {item.icon}
                           <span>{item.title}</span>
                         </NavLink>
                       </SidebarMenuButton>
