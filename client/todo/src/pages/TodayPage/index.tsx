@@ -1,27 +1,13 @@
+import MainContainer from "@/components/global/MainContainer";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import useTaskLayout from "@/zustand/useTaskLayout";
 
 const TodayPage = () => {
-  const [isOpen, setIsOpen] = useState(true);
-
+  const { toggleOpen } = useTaskLayout();
   return (
-    <div className="border flex h-screen">
-      <div
-        className={`border transition-all duration-500 ease-in-out ${
-          isOpen ? "w-3/6" : "w-full"
-        }`}
-      >
-        <Button onClick={() => setIsOpen(!isOpen)}>Toggle</Button>
-      </div>
-
-      <div
-        className={`border transition-all duration-500 ease-in-out ${
-          isOpen ? "w-2/6 opacity-100" : "max-w-0 opacity-0"
-        } overflow-hidden`}
-      >
-        Second
-      </div>
-    </div>
+    <MainContainer>
+      <Button onClick={toggleOpen}>Toggle</Button>
+    </MainContainer>
   );
 };
 
