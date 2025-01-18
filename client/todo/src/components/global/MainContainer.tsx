@@ -6,9 +6,7 @@ const MainContainer = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div
-      className={` flex   p-2 ${
-        isOpen ? "justify-evenly" : "justify-center"
-      } bg-[]`}
+      className={` flex   p-2 ${isOpen ? "justify-evenly" : "justify-center"} `}
     >
       <div
         className={`border rounded-md  transition-all duration-500 ease-in-out p-3 ${
@@ -19,7 +17,7 @@ const MainContainer = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       <div
-        className={`border transition-all rounded-md duration-500 ease-in-out ${
+        className={` transition-all  duration-500 ease-in-out   ${
           isOpen ? "w-2/6 opacity-100" : "max-w-0 opacity-0"
         } overflow-hidden`}
       >

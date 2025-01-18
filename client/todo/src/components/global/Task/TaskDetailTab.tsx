@@ -8,7 +8,7 @@ const TaskDetailTab = () => {
 
   if (!task) return <></>;
   return (
-    <div className="p-3">
+    <div className="p-3 border bg-white shadow-sm rounded-md">
       <div className="flex justify-between">
         <h3 className="font-semibold text-gray-400">Task Detail</h3>
         <X
