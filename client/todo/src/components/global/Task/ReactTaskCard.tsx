@@ -1,7 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Todo } from "@/types/task.type";
+import useTaskLayout from "@/zustand/useTaskLayout";
 import { CalendarDays } from "lucide-react";
+import StatusBadge from "./StatusBadge";
 
 interface TaskProps {
   tasks: Todo;
@@ -14,8 +16,18 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
     ["In-progress"]: "default",
   };
 
+  const { setTask, setOpen } = useTaskLayout();
+
+  const onCardClick = () => {
+    setTask(tasks);
+    setOpen();
+  };
+
   return (
-    <div className="border p-2 flex gap-x-3 items-center cursor-pointer rounded-md">
+    <div
+      className="border p-2 flex gap-x-3 items-center cursor-pointer rounded-md"
+      onClick={onCardClick}
+    >
       <div>
         <Checkbox id="completed" className="rounded-full" />
       </div>
@@ -27,10 +39,10 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
             {new Date(tasks.dueDate).toDateString()}
           </span>
           <div className="flex gap-x-2 mt-2">
-            <Badge variant={"secondary"}>Work</Badge>
-            <Badge variant={taskStatus[tasks?.status ?? "Pending"]}>
-              {tasks.status}
+            <Badge variant={"outline"}>
+              <span className="text-blue-500">Work</span>
             </Badge>
+            <StatusBadge variant={tasks?.status}>{tasks.status}</StatusBadge>
           </div>
         </div>
       </div>
