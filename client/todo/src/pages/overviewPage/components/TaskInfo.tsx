@@ -1,6 +1,6 @@
+import TaskCard from "@/components/global/Task/TaskCard";
+import TaskContainer from "@/components/global/Task/TaskContainer";
 import TaskModel from "@/components/global/Task/TaskModel";
-import TaskCard from "@/components/Task/TaskCard";
-import TaskContainer from "@/components/Task/TaskContainer";
 import useGetTaskData from "@/query/useGetTaskData";
 import { TodosByStatus } from "@/types/task.type";
 import { useState } from "react";

@@ -1,14 +1,18 @@
 import { Plus } from "lucide-react";
 import { Button } from "../ui/button";
 
-const PageHeader = () => {
+interface PageHeaderProps {
+  onClick: () => void;
+}
+
+const PageHeader = ({ onClick }: PageHeaderProps) => {
   return (
     <div className="flex justify-between w-full  mt-3">
       <div>
-        <h1 className="text-xl font-semibold">My Todo</h1>
+        <h1 className="text-xl font-semibold">Todo</h1>
       </div>
       <div>
-        <Button className="flex">
+        <Button className="flex" onClick={onClick}>
           New Task
           <Plus />
         </Button>

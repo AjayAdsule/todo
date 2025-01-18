@@ -4,10 +4,14 @@ const MainContainer = ({ children }: { children: React.ReactNode }) => {
   const { isOpen } = useTaskLayout();
 
   return (
-    <div className="border flex h-screen justify-between">
+    <div
+      className={` flex h-screen  p-2 ${
+        isOpen ? "justify-evenly" : "justify-center"
+      }`}
+    >
       <div
-        className={`border transition-all duration-500 ease-in-out ${
-          isOpen ? "w-3/6" : "w-full"
+        className={`border transition-all duration-500 ease-in-out p-3 ${
+          isOpen ? "w-3/6" : "w-4/6"
         }`}
       >
         {children}
