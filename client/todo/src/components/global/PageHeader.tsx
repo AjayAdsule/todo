@@ -9,7 +9,7 @@ const PageHeader = ({ onClick }: PageHeaderProps) => {
   return (
     <div className="flex justify-between w-full  mt-3">
       <div>
-        <h1 className="text-xl font-semibold">Todo</h1>
+        <h1 className="text-xl font-semibold">Today</h1>
       </div>
       <div>
         <Button

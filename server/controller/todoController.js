@@ -62,7 +62,7 @@ export const updateTodoStatus = async (req, res) => {
 export const getTodo = async (req, res) => {
   try {
     const { userId } = req;
-    console.log({ userId });
+
     const todos = await TodoModel.find({ userId });
 
     if (!todos || todos.length === 0) {
@@ -70,12 +70,12 @@ export const getTodo = async (req, res) => {
     }
     const filterTodo = todos.reduce((acc, curr) => {
       if (curr.status === "In-progress") {
-        acc["progress"] = acc["progress"] ? [...acc["progress"], curr] : [curr];
+        acc["Progress"] = acc["Progress"] ? [...acc["Progress"], curr] : [curr];
       } else if (curr.status === "Pending") {
-        acc["pending"] = acc["pending"] ? [...acc["pending"], curr] : [curr];
+        acc["Pending"] = acc["Pending"] ? [...acc["Pending"], curr] : [curr];
       } else if (curr.status === "Completed") {
-        acc["completed"] = acc["completed"]
-          ? [...acc["completed"], curr]
+        acc["Completed"] = acc["Completed"]
+          ? [...acc["Completed"], curr]
           : [curr];
       }
       return acc;

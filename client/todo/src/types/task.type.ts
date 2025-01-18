@@ -10,9 +10,9 @@ export interface Todo {
 }
 
 export interface TodosByStatus {
-  completed: Todo[];
-  pending: Todo[];
-  progress: Todo[];
+  Completed: Todo[];
+  Pending: Todo[];
+  Progress: Todo[];
 }
 
 export interface TaskResponse {
