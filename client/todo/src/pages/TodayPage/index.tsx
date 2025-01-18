@@ -5,9 +5,12 @@ import TaskTabs from "@/components/global/Task/TaskTabs";
 import useGetTaskData from "@/query/useGetTaskData";
 import { TodosByStatus } from "@/types/task.type";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const TodayPage = () => {
-  const { data } = useGetTaskData();
+  const { pathname } = useLocation();
+
+  const { data } = useGetTaskData(pathname);
   const [activeTab, setActiveTab] = useState("Progress");
 
   return (

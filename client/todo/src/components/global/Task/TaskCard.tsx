@@ -15,7 +15,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
 }) => {
   return (
     <div
-      className="bg-white rounded-lg border max-h-[300px] w-[90%] shadow-sm  p-2"
+      className="bg-[#f3f4f6]/30 rounded-lg border max-h-[300px] w-[90%] shadow-sm  p-2"
       onClick={onClick}
     >
       <div className="flex items-center justify-between">
