@@ -10,16 +10,19 @@ interface TaskProps {
 }
 
 const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
-  const { setTask, setOpen } = useTaskLayout();
+  const { setTask, setOpen, setActive, active } = useTaskLayout();
 
   const onCardClick = () => {
     setTask(tasks);
     setOpen();
+    setActive(tasks._id);
   };
-
+  const isActive = active === tasks._id;
   return (
     <div
-      className="border p-2 flex gap-x-3 items-center cursor-pointer rounded-md"
+      className={`border p-2 flex gap-x-3 items-center cursor-pointer rounded-md ${
+        isActive && "border-primary"
+      }`}
       onClick={onCardClick}
     >
       <div>

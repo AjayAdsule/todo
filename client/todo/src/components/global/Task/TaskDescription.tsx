@@ -7,12 +7,12 @@ const TaskDescription = ({ description }: { description: string }) => {
     const sliceDescription = seeMore ? description : description.slice(0, 250);
     return (
       <p className="text-sm">
-        {sliceDescription}...
+        {sliceDescription}
         <span
-          className="text-xs text-blue-500 cursor-pointer ml-2"
+          className="text-xs text-primary cursor-pointer ml-2"
           onClick={() => setSeeMore(!seeMore)}
         >
-          See more
+          {seeMore ? "see less" : "see more"}
         </span>
       </p>
     );
