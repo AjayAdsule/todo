@@ -29,6 +29,9 @@ const TodoModel = new Schema({
     ref: "Users",
     required: true,
   },
+  category: {
+    type: String,
+  },
 });
 
 export default mongoose.model("Todo", TodoModel);

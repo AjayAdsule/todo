@@ -3,13 +3,14 @@ import TodoModel from "../model/todoModel.js";
 export const createTask = async (req, res) => {
   try {
     const { userId } = req;
-    const { title, description, dueDate } = req.body;
+    const { title, description, dueDate, category } = req.body;
 
     const createTask = new TodoModel({
       title,
       description,
       dueDate,
       userId,
+      category,
     });
 
     await createTask.save();
@@ -30,14 +31,14 @@ export const createTask = async (req, res) => {
 export const updateTodoStatus = async (req, res) => {
   try {
     const { userId } = req;
-    const { status, id } = req.body;
+    const { id, ...updatedFeild } = req.body;
 
     const updateTodo = await TodoModel.findOneAndUpdate(
       {
         _id: id,
         userId,
       },
-      { status },
+      { ...updatedFeild },
       { new: true }
     );
 
@@ -62,6 +63,7 @@ export const updateTodoStatus = async (req, res) => {
 export const getTodo = async (req, res) => {
   try {
     const { userId } = req;
+    const { category } = req.query;
 
     const todos = await TodoModel.find({ userId });
 
