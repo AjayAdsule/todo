@@ -12,7 +12,11 @@ const PageHeader = ({ onClick }: PageHeaderProps) => {
         <h1 className="text-xl font-semibold">Todo</h1>
       </div>
       <div>
-        <Button className="flex" onClick={onClick}>
+        <Button
+          className="flex text-primary"
+          onClick={onClick}
+          variant={"outline"}
+        >
           New Task
           <Plus />
         </Button>

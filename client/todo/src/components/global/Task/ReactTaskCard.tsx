@@ -10,12 +10,6 @@ interface TaskProps {
 }
 
 const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
-  const taskStatus = {
-    Pending: "destructive",
-    Completed: "secondary",
-    ["In-progress"]: "default",
-  };
-
   const { setTask, setOpen } = useTaskLayout();
 
   const onCardClick = () => {
