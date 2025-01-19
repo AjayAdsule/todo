@@ -4,7 +4,8 @@ import { STATUS_CONST } from "@/constant/badge.constant";
 import useUpdateTask from "@/query/useUpdateTask";
 import { Todo } from "@/types/task.type";
 import useTaskLayout from "@/zustand/useTaskLayout";
-import { CalendarDays } from "lucide-react";
+import { useTaskModel } from "@/zustand/useTaskModel";
+import { CalendarDays, Pen, Trash } from "lucide-react";
 import { useState } from "react";
 import StatusBadge from "./StatusBadge";
 
@@ -14,6 +15,7 @@ interface TaskProps {
 
 const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
   const { setTask, setOpen, setActive, active } = useTaskLayout();
+  const { onEditOpenTaskModel } = useTaskModel();
   const [isCompleted, setIsCompleted] = useState(
     tasks.status === "Completed" ? true : false
   );
@@ -36,11 +38,11 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
   const isActive = active === tasks._id;
   return (
     <div
-      className={`border p-2 flex gap-x-3 items-center cursor-pointer rounded-md ${
+      className={`border  p-2 flex gap-x-3  cursor-pointer rounded-md ${
         isActive && "border-primary"
       }`}
     >
-      <div className="border">
+      <div className="flex items-center">
         <Checkbox
           id="completed"
           className="rounded-full"
@@ -64,6 +66,10 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
             </StatusBadge>
           </div>
         </div>
+      </div>
+      <div className="flex gap-x-2 items-start text-primary">
+        <Pen size={16} onClick={() => onEditOpenTaskModel(tasks)} />
+        <Trash size={16} className="text-destructive" />
       </div>
     </div>
   );

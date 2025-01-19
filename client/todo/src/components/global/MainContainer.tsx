@@ -1,5 +1,6 @@
 import useTaskLayout from "@/zustand/useTaskLayout";
 import TaskDetailTab from "./Task/TaskDetailTab";
+import TaskModel from "./Task/TaskModel";
 
 const MainContainer = ({ children }: { children: React.ReactNode }) => {
   const { isOpen } = useTaskLayout();
@@ -23,6 +24,7 @@ const MainContainer = ({ children }: { children: React.ReactNode }) => {
       >
         <TaskDetailTab />
       </div>
+      <TaskModel />
     </div>
   );
 };

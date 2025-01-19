@@ -1,6 +1,7 @@
 import { PRIORITY_CONST, STATUS_CONST } from "@/constant/badge.constant";
 import useTaskLayout from "@/zustand/useTaskLayout";
 import { X } from "lucide-react";
+import React from "react";
 import TaskDescription from "./TaskDescription";
 import TaskInfo from "./TaskInfo";
 
@@ -50,4 +51,4 @@ const TaskDetailTab = () => {
   );
 };
 
-export default TaskDetailTab;
+export default React.memo(TaskDetailTab);

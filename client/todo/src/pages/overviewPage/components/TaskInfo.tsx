@@ -1,4 +1,4 @@
-import TaskCard from "@/components/global/Task/TaskCard";
+import TaskCard from "@/components/global/Task/OverViewTaskCard";
 import TaskContainer from "@/components/global/Task/TaskContainer";
 import TaskModel from "@/components/global/Task/TaskModel";
 import useGetTaskData from "@/query/useGetTaskData";

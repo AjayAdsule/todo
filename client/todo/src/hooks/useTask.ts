@@ -1,34 +1,45 @@
 import apiRequest from "@/lib/axios/axiosConfig";
+import { useTaskModel } from "@/zustand/useTaskModel";
 import { useMutation } from "@tanstack/react-query";
 import dayjs from "dayjs";
+import { useEffect } from "react";
 
 import { useForm } from "react-hook-form";
 
 type Priority = "high" | "medium" | "low";
 
 interface FormProps {
+  id?: string;
   title: string;
   description: string;
   dueDate: string;
   priority?: Priority;
 }
 
-export default function useTask(type = "new", taskId?: string) {
+export default function useTask() {
+  const { isModelOpen, onModelClose, task, type } = useTaskModel();
   const methods = useForm<FormProps>({
     defaultValues: {
+      id: "",
       title: "",
       description: "",
-      dueDate: new Date(),
+      dueDate: "",
       priority: "medium",
     },
   });
 
+  useEffect(() => {
+    if (type === "Edit") {
+      methods.reset(task);
+    }
+  }, [type]);
+
   const { mutate } = useMutation({
     mutationFn: async (data: FormProps) => {
-      if (type === "new") {
+      if (type === "New") {
         const res = await apiRequest.post("/todo/create-task", data);
         return res.data;
-      } else if (type === "edit" && taskId) {
+      } else if (type === "Edit" && task?._id) {
         const response = await apiRequest.patch(`/todo/edit-task`, data);
         return response.data;
       } else {
@@ -49,5 +60,7 @@ export default function useTask(type = "new", taskId?: string) {
   return {
     methods,
     onTaskSubmit,
+    isModelOpen,
+    onModelClose,
   };
 }
