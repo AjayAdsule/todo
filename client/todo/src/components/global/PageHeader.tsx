@@ -1,4 +1,5 @@
 import { Plus } from "lucide-react";
+import React from "react";
 import { Button } from "../ui/button";
 
 interface PageHeaderProps {
@@ -25,4 +26,4 @@ const PageHeader = ({ onClick }: PageHeaderProps) => {
   );
 };
 
-export default PageHeader;
+export default React.memo(PageHeader);

@@ -1,3 +1,4 @@
+import { PRIORITY_CONST, STATUS_CONST } from "@/constant/badge.constant";
 import useTaskLayout from "@/zustand/useTaskLayout";
 import { X } from "lucide-react";
 import TaskDescription from "./TaskDescription";
@@ -5,25 +6,6 @@ import TaskInfo from "./TaskInfo";
 
 const TaskDetailTab = () => {
   const { task, setClose, setActiveReset } = useTaskLayout();
-  console.log(task);
-
-  const STATUS_CONST: Record<
-    string,
-    "active" | "danger" | "success" | "secondary"
-  > = {
-    Pending: "danger",
-    Completed: "success",
-    ["In-progress"]: "active",
-  };
-
-  const PRIORITY: Record<
-    string,
-    "active" | "danger" | "success" | "secondary"
-  > = {
-    High: "success",
-    Medium: "active",
-    Low: "danger",
-  };
 
   if (!task) return <></>;
   return (
@@ -53,7 +35,7 @@ const TaskDetailTab = () => {
               label="Priority"
               value={task.priority}
               badge={true}
-              variant={PRIORITY[task.priority]}
+              variant={PRIORITY_CONST[task.priority]}
             />
             <TaskInfo
               label="Status"

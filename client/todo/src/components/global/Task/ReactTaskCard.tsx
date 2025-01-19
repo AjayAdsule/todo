@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
+import { STATUS_CONST } from "@/constant/badge.constant";
 import useUpdateTask from "@/query/useUpdateTask";
 import { Todo } from "@/types/task.type";
 import useTaskLayout from "@/zustand/useTaskLayout";
@@ -39,7 +40,7 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
         isActive && "border-primary"
       }`}
     >
-      <div>
+      <div className="border">
         <Checkbox
           id="completed"
           className="rounded-full"
@@ -47,7 +48,7 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
           onCheckedChange={handleOnChecked}
         />
       </div>
-      <div className="flex flex-col" onClick={onCardClick}>
+      <div className="flex flex-col w-full" onClick={onCardClick}>
         <h3 className="font-semibold">{tasks.title}</h3>
         <div className="card_details mt-2">
           <span className="flex text-xs items-center gap-x-1">
@@ -58,7 +59,9 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
             <Badge variant={"outline"}>
               <span className="text-blue-500">Work</span>
             </Badge>
-            <StatusBadge variant={tasks?.status}>{tasks.status}</StatusBadge>
+            <StatusBadge variant={STATUS_CONST[tasks?.status]}>
+              {tasks.status}
+            </StatusBadge>
           </div>
         </div>
       </div>

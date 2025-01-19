@@ -1,3 +1,5 @@
+import React from "react";
+
 interface TaskTabProps {
   activeTab: string;
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -22,4 +24,4 @@ const TaskTabs: React.FC<TaskTabProps> = ({ activeTab, setActiveTab }) => {
   );
 };
 
-export default TaskTabs;
+export default React.memo(TaskTabs);
