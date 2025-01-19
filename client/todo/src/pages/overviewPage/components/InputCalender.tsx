@@ -9,7 +9,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-
 export function InputCalender({
   value,
   onChange,
@@ -39,7 +38,7 @@ export function InputCalender({
             selected={value}
             onSelect={onChange}
             disabled={(date) =>
-              date > new Date() || date < new Date("1900-01-01")
+              date < new Date() || date < new Date("1900-01-01")
             }
           />
         </PopoverContent>

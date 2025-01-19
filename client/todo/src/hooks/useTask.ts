@@ -1,5 +1,7 @@
 import apiRequest from "@/lib/axios/axiosConfig";
 import { useMutation } from "@tanstack/react-query";
+import dayjs from "dayjs";
+
 import { useForm } from "react-hook-form";
 
 type Priority = "high" | "medium" | "low";
@@ -7,7 +9,7 @@ type Priority = "high" | "medium" | "low";
 interface FormProps {
   title: string;
   description: string;
-  dueDate: Date;
+  dueDate: string;
   priority?: Priority;
 }
 
@@ -36,8 +38,12 @@ export default function useTask(type = "new", taskId?: string) {
   });
 
   const onTaskSubmit = (data: FormProps) => {
-    console.log(data);
-    mutate(data);
+    const date = dayjs(data.dueDate).format("DD-MM-YYYY");
+
+    mutate({
+      ...data,
+      dueDate: date,
+    });
   };
 
   return {

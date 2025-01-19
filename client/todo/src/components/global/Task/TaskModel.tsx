@@ -31,7 +31,7 @@ const TaskModel = ({
               </div>
               <div className="w-[250px]  flex flex-col gap-y-4">
                 <Controller
-                  name="date"
+                  name="dueDate"
                   control={methods.control}
                   render={({ field }) => (
                     <InputCalender

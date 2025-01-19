@@ -22,7 +22,7 @@ const TodoModel = new Schema({
   },
 
   dueDate: {
-    type: Date,
+    type: String,
   },
   userId: {
     type: Schema.Types.ObjectId,
