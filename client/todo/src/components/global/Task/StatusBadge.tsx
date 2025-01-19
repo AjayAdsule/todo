@@ -8,14 +8,14 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        Pending: "text-red-400",
-        ["In-progress"]: "text-blue-400",
-        Completed: "text-green-400",
-        outline: "text-foreground",
+        danger: "text-red-400",
+        active: "text-blue-400",
+        success: "text-green-400",
+        secondary: "text-foreground",
       },
     },
     defaultVariants: {
-      variant: "Pending",
+      variant: "danger",
     },
   }
 );

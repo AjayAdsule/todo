@@ -5,6 +5,25 @@ import TaskInfo from "./TaskInfo";
 
 const TaskDetailTab = () => {
   const { task, setClose, setActiveReset } = useTaskLayout();
+  console.log(task);
+
+  const STATUS_CONST: Record<
+    string,
+    "active" | "danger" | "success" | "secondary"
+  > = {
+    Pending: "danger",
+    Completed: "success",
+    ["In-progress"]: "active",
+  };
+
+  const PRIORITY: Record<
+    string,
+    "active" | "danger" | "success" | "secondary"
+  > = {
+    High: "success",
+    Medium: "active",
+    Low: "danger",
+  };
 
   if (!task) return <></>;
   return (
@@ -28,12 +47,20 @@ const TaskDetailTab = () => {
             <TaskDescription description={task.description} />
           </div>
           <div className="mt-6 flex flex-col gap-y-4  ">
-            <TaskInfo label="Status" value={task?.status} />
-            <TaskInfo
-              label="Date"
-              value={new Date(task.dueDate).toDateString()}
-            />
+            <TaskInfo label="Date" value={task.dueDate} />
             <TaskInfo label="Type" value="Daily Task" />
+            <TaskInfo
+              label="Priority"
+              value={task.priority}
+              badge={true}
+              variant={PRIORITY[task.priority]}
+            />
+            <TaskInfo
+              label="Status"
+              value={task?.status}
+              badge={true}
+              variant={STATUS_CONST[task?.status]}
+            />
           </div>
         </div>
       </div>

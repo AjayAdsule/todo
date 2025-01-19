@@ -20,7 +20,11 @@ const TodoModel = new Schema({
     type: Date,
     default: Date.now,
   },
-
+  priority: {
+    type: String,
+    enum: ["High", "Medium", "Low"],
+    default: "Medium",
+  },
   dueDate: {
     type: String,
   },
