@@ -7,13 +7,13 @@ import { TodosByStatus } from "@/types/task.type";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-const validParams = ["today", "tommorow", "next-sevenday"];
+const validParams = ["today", "tomorrow", "next-sevenday"];
 const TodayPage = () => {
   const { day } = useParams<{ day: string }>();
   const { data } = useGetTaskData(day);
   const [activeTab, setActiveTab] = useState("Progress");
+
   if (!validParams.includes(day)) {
-    // Redirect to a Not Found page or another route
     return;
   }
   return (

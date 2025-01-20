@@ -15,7 +15,7 @@ interface UpdateTaskPayload {
 export default function useUpdateTask() {
   const { pathname } = useLocation();
   const filter = pathname.split("/").at(-1);
-  console.log(filter);
+
   const api = useQueryClient();
   const { mutate: updateTaskMutate } = useMutation<
     Todo,

@@ -80,7 +80,7 @@ export function AppSidebar() {
   return (
     <Sidebar className="shadow-xl">
       <SidebarHeader>
-        <TasklystLogo height="60" width="200" />
+        <TasklystLogo height="60" width="150" />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
