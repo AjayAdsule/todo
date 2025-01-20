@@ -1,15 +1,16 @@
+import dayjs from "dayjs";
 import TodoModel from "../model/todoModel.js";
-
 export const createTask = async (req, res) => {
   try {
     const { userId } = req;
-    const { title, description, dueDate } = req.body;
+    const { title, description, dueDate, category } = req.body;
 
     const createTask = new TodoModel({
       title,
       description,
       dueDate,
       userId,
+      category,
     });
 
     await createTask.save();
@@ -30,14 +31,14 @@ export const createTask = async (req, res) => {
 export const updateTodoStatus = async (req, res) => {
   try {
     const { userId } = req;
-    const { status, id, title, description, dueDate } = req.body;
+    const { id, ...updatedFeild } = req.body;
 
     const updateTodo = await TodoModel.findOneAndUpdate(
       {
         _id: id,
         userId,
       },
-      { status, id, title, description, dueDate },
+      { ...updatedFeild },
       { new: true }
     );
 
@@ -62,20 +63,42 @@ export const updateTodoStatus = async (req, res) => {
 export const getTodo = async (req, res) => {
   try {
     const { userId } = req;
-    console.log({ userId });
-    const todos = await TodoModel.find({ userId });
+    const { category, filterBy } = req.query;
+
+    const filter = { userId };
+
+    if (category) {
+      filter.category = category;
+    }
+
+    if (filterBy === "today") {
+      const today = dayjs().format("DD-MM-YYYY");
+      filter.dueDate = today;
+    } else if (filterBy === "tomorrow") {
+      const date = dayjs().add(1, "day").format("DD-MM-YYYY");
+      filter.dueDate = date;
+    } else if (filterBy === "sevenday") {
+      const nextSevenDay = dayjs().add(7, "day").format("DD-MM-YYYY");
+      const today = dayjs().format("DD-MM-YYYY");
+      filter.dueDate = {
+        $gte: today,
+        $lte: nextSevenDay,
+      };
+    }
+
+    const todos = await TodoModel.find({ ...filter });
 
     if (!todos || todos.length === 0) {
       return res.status(404).json({ message: "No todos found for this user" });
     }
     const filterTodo = todos.reduce((acc, curr) => {
       if (curr.status === "In-progress") {
-        acc["progress"] = acc["progress"] ? [...acc["progress"], curr] : [curr];
+        acc["Progress"] = acc["Progress"] ? [...acc["Progress"], curr] : [curr];
       } else if (curr.status === "Pending") {
-        acc["pending"] = acc["pending"] ? [...acc["pending"], curr] : [curr];
+        acc["Pending"] = acc["Pending"] ? [...acc["Pending"], curr] : [curr];
       } else if (curr.status === "Completed") {
-        acc["completed"] = acc["completed"]
-          ? [...acc["completed"], curr]
+        acc["Completed"] = acc["Completed"]
+          ? [...acc["Completed"], curr]
           : [curr];
       }
       return acc;

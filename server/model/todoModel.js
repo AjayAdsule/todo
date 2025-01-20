@@ -20,14 +20,21 @@ const TodoModel = new Schema({
     type: Date,
     default: Date.now,
   },
-
+  priority: {
+    type: String,
+    enum: ["High", "Medium", "Low"],
+    default: "Medium",
+  },
   dueDate: {
-    type: Date,
+    type: String,
   },
   userId: {
     type: Schema.Types.ObjectId,
     ref: "Users",
     required: true,
+  },
+  category: {
+    type: String,
   },
 });
 

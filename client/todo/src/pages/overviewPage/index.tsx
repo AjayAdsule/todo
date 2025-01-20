@@ -6,7 +6,11 @@ const OverviewPage = () => {
   return (
     <PageContainer>
       <div>
-        <PageHeader />
+        <PageHeader
+          onClick={() => {
+            return;
+          }}
+        />
         <div>
           <TaskInfo />
         </div>

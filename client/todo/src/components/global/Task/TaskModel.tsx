@@ -7,18 +7,10 @@ import { Controller, FormProvider } from "react-hook-form";
 import AddTask from "./AddTask";
 import TaskPriority from "./TaskPriority";
 
-const TaskModel = ({
-  isOpen,
-  onOpenChange,
-  type,
-}: {
-  isOpen: boolean;
-  onOpenChange: (open: boolean) => void;
-  type: "edit" | "new";
-}) => {
-  const { methods, onTaskSubmit } = useTask(type);
+const TaskModel = () => {
+  const { methods, onTaskSubmit, isModelOpen, onModelClose } = useTask();
   return (
-    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+    <Dialog open={isModelOpen} onOpenChange={onModelClose}>
       <DialogContent className="h-auto w-auto max-w-full overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
