@@ -19,19 +19,19 @@ const TaskPriority: React.FC<TaskPriorityProps> = ({ onChange, value }) => {
         <SelectValue placeholder="Priority" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="high">
+        <SelectItem value="High">
           <div className="flex items-center gap-x-2 text-red-500">
             <Flag size={11} />
             <span>High</span>
           </div>
         </SelectItem>
-        <SelectItem value="medium">
+        <SelectItem value="Medium">
           <div className="flex items-center gap-x-2 text-blue-500">
             <Flag size={11} />
             <span>Medium</span>
           </div>
         </SelectItem>
-        <SelectItem value="low">
+        <SelectItem value="Low">
           <div className="flex items-center gap-x-2 text-green-500">
             <Flag size={11} />
             <span>Low</span>

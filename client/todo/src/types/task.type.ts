@@ -3,10 +3,10 @@ export interface Todo {
   title: string;
   description: string;
   status: "Completed" | "Pending" | "In-progress";
-  dueDate: string;
+  dueDate?: string | Date;
   userId: string;
   createdAt: string;
-  priority: string;
+  priority: "High" | "Medium" | "Low";
   __v: number;
 }
 

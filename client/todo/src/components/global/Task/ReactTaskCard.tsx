@@ -8,6 +8,9 @@ import { useTaskModel } from "@/zustand/useTaskModel";
 import { CalendarDays, Pen, Trash } from "lucide-react";
 import { useState } from "react";
 import StatusBadge from "./StatusBadge";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import globalPostRequest from "@/lib/axios/services/globalPostRequest";
+import URLS from "@/lib/axios/URLS";
 
 interface TaskProps {
   tasks: Todo;
@@ -16,6 +19,13 @@ interface TaskProps {
 const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
   const { setTask, setOpen, setActive, active } = useTaskLayout();
   const { onEditOpenTaskModel } = useTaskModel();
+  const api = useQueryClient();
+  const { mutate: deleteTaskMutation } = useMutation({
+    mutationFn: ({ id }: { id: string }) =>
+      globalPostRequest({ url: URLS.deleteTask, data: { id } }),
+    onSuccess: () => api.invalidateQueries({ queryKey: ["todos"] }),
+  });
+
   const [isCompleted, setIsCompleted] = useState(
     tasks.status === "Completed" ? true : false
   );
@@ -55,7 +65,7 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
         <div className="card_details mt-2">
           <span className="flex text-xs items-center gap-x-1">
             <CalendarDays size={12} />
-            {new Date(tasks.dueDate).toDateString()}
+            {tasks.dueDate}
           </span>
           <div className="flex gap-x-2 mt-2">
             <Badge variant={"outline"}>
@@ -69,7 +79,11 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
       </div>
       <div className="flex gap-x-2 items-start text-primary">
         <Pen size={16} onClick={() => onEditOpenTaskModel(tasks)} />
-        <Trash size={16} className="text-destructive" />
+        <Trash
+          size={16}
+          className="text-destructive"
+          onClick={() => deleteTaskMutation({ id: tasks._id })}
+        />
       </div>
     </div>
   );

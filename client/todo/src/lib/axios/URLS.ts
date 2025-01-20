@@ -7,6 +7,7 @@ const URLS: URLSTypes = {
   signUp: "/auth/signup",
   getTodo: "/todo/get-todo",
   updateTask: "/todo/update-todo",
+  deleteTask: "/todo/delete-task",
 };
 
 export default URLS;

@@ -13,7 +13,7 @@ export function InputCalender({
   value,
   onChange,
 }: {
-  value?: Date;
+  value?: Date | string;
   onChange?: () => void;
 }) {
   return (

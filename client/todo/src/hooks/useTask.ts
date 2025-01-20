@@ -3,16 +3,16 @@ import { useTaskModel } from "@/zustand/useTaskModel";
 import { useMutation } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { useEffect } from "react";
-
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useForm } from "react-hook-form";
 
-type Priority = "high" | "medium" | "low";
+type Priority = "High" | "Medium" | "Low";
 
 interface FormProps {
   id?: string;
   title: string;
   description: string;
-  dueDate: string;
+  dueDate: Date | string;
   priority?: Priority;
 }
 
@@ -24,13 +24,22 @@ export default function useTask() {
       title: "",
       description: "",
       dueDate: "",
-      priority: "medium",
+      priority: "Medium",
     },
   });
 
+  dayjs.extend(customParseFormat);
+
   useEffect(() => {
     if (type === "Edit") {
-      methods.reset(task);
+      if (task?.dueDate && task) {
+        const date = dayjs(task?.dueDate, "DD-MM-YYYY");
+
+        methods.reset({
+          ...task,
+          dueDate: date.format(),
+        });
+      }
     }
   }, [type]);
 
