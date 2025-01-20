@@ -2,6 +2,7 @@ import globalPatchRequest from "@/lib/axios/services/globalPatchRequest";
 import URLS from "@/lib/axios/URLS";
 import { Todo } from "@/types/task.type";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
 
 interface UpdateTaskPayload {
   title?: string;
@@ -12,6 +13,9 @@ interface UpdateTaskPayload {
 }
 
 export default function useUpdateTask() {
+  const { pathname } = useLocation();
+  const filter = pathname.split("/").at(-1);
+  console.log(filter);
   const api = useQueryClient();
   const { mutate: updateTaskMutate } = useMutation<
     Todo,
@@ -23,7 +27,7 @@ export default function useUpdateTask() {
         url: URLS.updateTask,
         data,
       }),
-    onSuccess: () => api.invalidateQueries({ queryKey: ["todos"] }),
+    onSuccess: () => api.invalidateQueries({ queryKey: ["todo", filter] }),
   });
 
   return {

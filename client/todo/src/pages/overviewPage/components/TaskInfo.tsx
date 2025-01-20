@@ -4,12 +4,11 @@ import TaskModel from "@/components/global/Task/TaskModel";
 import useGetTaskData from "@/query/useGetTaskData";
 import { TodosByStatus } from "@/types/task.type";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+
 import TaskFilter from "./TaskFilter";
 
 const TaskInfo = () => {
-  const { pathname } = useLocation();
-  const { data } = useGetTaskData(pathname);
+  const { data } = useGetTaskData("overview");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleDialogChange = (open: boolean) => {
     setIsOpen(open);

@@ -9,8 +9,9 @@ import { useLocation } from "react-router-dom";
 
 const TodayPage = () => {
   const { pathname } = useLocation();
+  const filter = pathname.split("/").at(-1) ?? "";
 
-  const { data } = useGetTaskData(pathname);
+  const { data } = useGetTaskData(filter);
   const [activeTab, setActiveTab] = useState("Progress");
 
   return (
