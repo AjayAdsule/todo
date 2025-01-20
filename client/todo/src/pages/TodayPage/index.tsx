@@ -5,18 +5,21 @@ import TaskTabs from "@/components/global/Task/TaskTabs";
 import useGetTaskData from "@/query/useGetTaskData";
 import { TodosByStatus } from "@/types/task.type";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
+const validParams = ["today", "tommorow", "next-sevenday"];
 const TodayPage = () => {
-  const { pathname } = useLocation();
-  const filter = pathname.split("/").at(-1) ?? "";
-
-  const { data } = useGetTaskData(filter);
+  const { day } = useParams<{ day: string }>();
+  const { data } = useGetTaskData(day);
   const [activeTab, setActiveTab] = useState("Progress");
-
+  if (!validParams.includes(day)) {
+    // Redirect to a Not Found page or another route
+    return;
+  }
   return (
     <MainContainer>
       <PageHeader
+        title="Today"
         onClick={() => {
           return;
         }}

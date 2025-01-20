@@ -3,14 +3,15 @@ import React from "react";
 import { Button } from "../ui/button";
 
 interface PageHeaderProps {
+  title: string;
   onClick: () => void;
 }
 
-const PageHeader = ({ onClick }: PageHeaderProps) => {
+const PageHeader = ({ onClick, title }: PageHeaderProps) => {
   return (
     <div className="flex justify-between w-full  mt-3">
       <div>
-        <h1 className="text-xl font-semibold">Today</h1>
+        <h1 className="text-xl font-semibold">{title}</h1>
       </div>
       <div>
         <Button

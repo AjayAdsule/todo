@@ -5,6 +5,7 @@ import OverviewPage from "@/pages/overviewPage";
 import SignInPage from "@/pages/SignIn";
 import SignUpPage from "@/pages/signUp";
 import TodayPage from "@/pages/TodayPage";
+import TomorrowPage from "@/pages/TomorrowPage";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -29,9 +30,10 @@ export const router = createBrowserRouter([
         element: <OverviewPage />,
       },
       {
-        path: "today",
+        path: "main/:day",
         element: <TodayPage />,
       },
+
       {
         path: ":list",
         element: <ListDynamicPage />,

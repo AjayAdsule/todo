@@ -38,17 +38,17 @@ const items = [
   },
   {
     title: "Today",
-    url: "/todo/today",
+    url: "/todo/main/today",
     icon: Eye,
   },
   {
     title: "Tomorrow",
-    url: "/todo/today",
+    url: "/todo/main/tomorrow",
     icon: CalendarFold,
   },
   {
     title: "Next 7 days",
-    url: "/todo/today",
+    url: "/todo/main/next-sevenday",
     icon: CalendarClock,
   },
 ];
