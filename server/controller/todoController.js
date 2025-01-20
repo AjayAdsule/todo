@@ -77,7 +77,7 @@ export const getTodo = async (req, res) => {
     } else if (filterBy === "tomorrow") {
       const date = dayjs().add(1, "day").format("DD-MM-YYYY");
       filter.dueDate = date;
-    } else if (filterBy === "sevenday") {
+    } else if (filterBy === "next-sevenday") {
       const nextSevenDay = dayjs().add(7, "day").format("DD-MM-YYYY");
       const today = dayjs().format("DD-MM-YYYY");
       filter.dueDate = {
