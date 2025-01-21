@@ -1,14 +1,25 @@
 import { Plus } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
-import { useTaskModel } from "@/zustand/useTaskModel";
+import { Category, useTaskModel } from "@/zustand/useTaskModel";
+import { useParams } from "react-router-dom";
 
 interface PageHeaderProps {
   title?: string;
 }
 
 const PageHeader = ({ title }: PageHeaderProps) => {
+  const { category } = useParams();
+
   const { setTaskModelOpen } = useTaskModel();
+
+  const handleModelOpen = () => {
+    if (category) {
+      setTaskModelOpen(category as Category);
+    } else {
+      setTaskModelOpen();
+    }
+  };
 
   return (
     <div className="flex justify-between w-full  mt-3">
@@ -18,7 +29,7 @@ const PageHeader = ({ title }: PageHeaderProps) => {
       <div>
         <Button
           className="flex text-primary"
-          onClick={setTaskModelOpen}
+          onClick={handleModelOpen}
           variant={"outline"}
         >
           New Task
