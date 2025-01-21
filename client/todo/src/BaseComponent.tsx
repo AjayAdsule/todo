@@ -8,7 +8,7 @@ const BaseComponent = () => {
     const token = localStorage.getItem("token");
     if (token) {
       setAxiosAuthHeader(token);
-      navigate("/todo/home");
+      navigate("/todo/overview");
     }
   }, []);
 

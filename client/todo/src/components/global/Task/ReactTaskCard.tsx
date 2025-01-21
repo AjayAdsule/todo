@@ -1,16 +1,16 @@
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { PRIORITY_CONST, STATUS_CONST } from "@/constant/badge.constant";
+import globalPostRequest from "@/lib/axios/services/globalPostRequest";
+import URLS from "@/lib/axios/URLS";
 import useUpdateTask from "@/query/useUpdateTask";
 import { Todo } from "@/types/task.type";
 import useTaskLayout from "@/zustand/useTaskLayout";
 import { useTaskModel } from "@/zustand/useTaskModel";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CalendarDays, Pen, Trash } from "lucide-react";
 import { useState } from "react";
 import StatusBadge from "./StatusBadge";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import globalPostRequest from "@/lib/axios/services/globalPostRequest";
-import URLS from "@/lib/axios/URLS";
 
 interface TaskProps {
   tasks: Todo;
@@ -48,7 +48,7 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
   const isActive = active === tasks._id;
   return (
     <div
-      className={`border  p-2 flex gap-x-3  cursor-pointer rounded-md ${
+      className={`border  p-2 flex gap-x-3 bg-white  cursor-pointer rounded-md ${
         isActive && "border-primary"
       }`}
     >
