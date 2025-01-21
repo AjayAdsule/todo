@@ -14,6 +14,7 @@ interface FormProps {
   description: string;
   dueDate: Date | string;
   priority?: Priority;
+  status: "In-progress" | "Pending" | "Completed";
 }
 
 export default function useTask() {
@@ -25,6 +26,7 @@ export default function useTask() {
       description: "",
       dueDate: "",
       priority: "Medium",
+      status: "In-progress",
     },
   });
 

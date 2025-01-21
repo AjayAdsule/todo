@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { STATUS_CONST } from "@/constant/badge.constant";
+import { PRIORITY_CONST, STATUS_CONST } from "@/constant/badge.constant";
 import useUpdateTask from "@/query/useUpdateTask";
 import { Todo } from "@/types/task.type";
 import useTaskLayout from "@/zustand/useTaskLayout";
@@ -73,6 +73,9 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
             </Badge>
             <StatusBadge variant={STATUS_CONST[tasks?.status]}>
               {tasks.status}
+            </StatusBadge>
+            <StatusBadge variant={PRIORITY_CONST[tasks?.priority]}>
+              {tasks.priority}
             </StatusBadge>
           </div>
         </div>

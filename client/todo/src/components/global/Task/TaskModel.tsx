@@ -6,6 +6,7 @@ import { DialogTitle } from "@radix-ui/react-dialog";
 import { Controller, FormProvider } from "react-hook-form";
 import AddTask from "./AddTask";
 import TaskPriority from "./TaskPriority";
+import SelectOption from "../SelectOption";
 
 const TaskModel = () => {
   const { methods, onTaskSubmit, isModelOpen, onModelClose } = useTask();
@@ -38,6 +39,17 @@ const TaskModel = () => {
                     <TaskPriority
                       value={field.value}
                       onChange={field.onChange}
+                    />
+                  )}
+                />
+                <Controller
+                  name="status"
+                  render={({ field }) => (
+                    <SelectOption
+                      value={field.value}
+                      onChange={field.onChange}
+                      options={["In-progress", "Pending", "Completed"]}
+                      label="Status"
                     />
                   )}
                 />

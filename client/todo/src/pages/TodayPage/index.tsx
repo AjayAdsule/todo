@@ -19,7 +19,7 @@ const TodayPage = () => {
   return (
     <MainContainer>
       <PageHeader
-        title="Today"
+        title={day}
         onClick={() => {
           return;
         }}
