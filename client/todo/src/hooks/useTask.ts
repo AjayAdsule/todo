@@ -1,5 +1,5 @@
 import apiRequest from "@/lib/axios/axiosConfig";
-import { useTaskModel } from "@/zustand/useTaskModel";
+import { Category, useTaskModel } from "@/zustand/useTaskModel";
 import { useMutation } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { useEffect } from "react";
@@ -15,10 +15,11 @@ interface FormProps {
   dueDate: Date | string;
   priority?: Priority;
   status: "In-progress" | "Pending" | "Completed";
+  category?: Category;
 }
 
 export default function useTask() {
-  const { isModelOpen, onModelClose, task, type } = useTaskModel();
+  const { isModelOpen, onModelClose, task, type, category } = useTaskModel();
   const methods = useForm<FormProps>({
     defaultValues: {
       id: "",
@@ -27,6 +28,7 @@ export default function useTask() {
       dueDate: "",
       priority: "Medium",
       status: "In-progress",
+      category: category,
     },
   });
 
@@ -45,6 +47,12 @@ export default function useTask() {
     }
   }, [type]);
 
+  useEffect(() => {
+    if (category && type === "New") {
+      methods.reset({ category });
+    }
+  }, [category]);
+
   const { mutate } = useMutation({
     mutationFn: async (data: FormProps) => {
       if (type === "New") {
@@ -61,7 +69,6 @@ export default function useTask() {
 
   const onTaskSubmit = (data: FormProps) => {
     const date = dayjs(data.dueDate).format("DD-MM-YYYY");
-
     mutate({
       ...data,
       dueDate: date,

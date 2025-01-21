@@ -89,7 +89,11 @@ export const getTodo = async (req, res) => {
     const todos = await TodoModel.find({ ...filter });
 
     if (!todos || todos.length === 0) {
-      return res.status(404).json({ message: "No todos found for this user" });
+      return res.status(201).json({
+        message: "No todos found for this user",
+        success: false,
+        todo: [],
+      });
     }
     const filterTodo = todos.reduce((acc, curr) => {
       if (curr.status === "In-progress") {

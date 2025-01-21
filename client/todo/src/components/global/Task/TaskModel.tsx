@@ -7,6 +7,7 @@ import { Controller, FormProvider } from "react-hook-form";
 import AddTask from "./AddTask";
 import TaskPriority from "./TaskPriority";
 import SelectOption from "../SelectOption";
+import usePages from "@/hooks/usePages";
 
 const TaskModel = () => {
   const { methods, onTaskSubmit, isModelOpen, onModelClose } = useTask();
@@ -18,9 +19,11 @@ const TaskModel = () => {
       dueDate: "",
       priority: "Medium",
       status: "In-progress",
+      category: "work",
     });
     onModelClose();
   };
+  const { isCategoryPage } = usePages();
 
   return (
     <Dialog open={isModelOpen} onOpenChange={handleModelClose}>
@@ -65,6 +68,19 @@ const TaskModel = () => {
                     />
                   )}
                 />
+                {!isCategoryPage && (
+                  <Controller
+                    name="category"
+                    render={({ field }) => (
+                      <SelectOption
+                        value={field.value}
+                        onChange={field.onChange}
+                        options={["work", "workout", "learning", "reading"]}
+                        label="Category"
+                      />
+                    )}
+                  />
+                )}
               </div>
             </div>
             <div className="flex justify-end mt-4">

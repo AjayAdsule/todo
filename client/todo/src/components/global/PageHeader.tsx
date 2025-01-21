@@ -2,19 +2,18 @@ import { Plus } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
 import { Category, useTaskModel } from "@/zustand/useTaskModel";
-import { useParams } from "react-router-dom";
+import usePages from "@/hooks/usePages";
 
 interface PageHeaderProps {
   title?: string;
 }
 
 const PageHeader = ({ title }: PageHeaderProps) => {
-  const { category } = useParams();
-
+  const { isCategoryPage, category } = usePages();
   const { setTaskModelOpen } = useTaskModel();
 
   const handleModelOpen = () => {
-    if (category) {
+    if (isCategoryPage) {
       setTaskModelOpen(category as Category);
     } else {
       setTaskModelOpen();
