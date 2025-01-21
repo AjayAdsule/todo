@@ -1,13 +1,15 @@
 import { Plus } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
+import { useTaskModel } from "@/zustand/useTaskModel";
 
 interface PageHeaderProps {
-  title: string;
-  onClick: () => void;
+  title?: string;
 }
 
-const PageHeader = ({ onClick, title }: PageHeaderProps) => {
+const PageHeader = ({ title }: PageHeaderProps) => {
+  const { setTaskModelOpen } = useTaskModel();
+
   return (
     <div className="flex justify-between w-full  mt-3">
       <div>
@@ -16,7 +18,7 @@ const PageHeader = ({ onClick, title }: PageHeaderProps) => {
       <div>
         <Button
           className="flex text-primary"
-          onClick={onClick}
+          onClick={setTaskModelOpen}
           variant={"outline"}
         >
           New Task

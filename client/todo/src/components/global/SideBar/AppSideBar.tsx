@@ -56,22 +56,22 @@ const items = [
 const listItems = [
   {
     title: "Work",
-    url: "/todo/work",
+    url: "/todo/list/work",
     icon: <BriefcaseBusiness className="text-blue-400" />,
   },
   {
     title: "Workout",
-    url: "/todo/workout",
+    url: "/todo/list/workout",
     icon: <Zap className="text-red-400" />,
   },
   {
     title: "Learning",
-    url: "/todo/learning",
+    url: "/todo/list/learning",
     icon: <GraduationCap className="text-green-500" />,
   },
   {
     title: "Reading",
-    url: "/todo/reading",
+    url: "/todo/list/reading",
     icon: <NotebookText className="text-amber-500" />,
   },
 ];

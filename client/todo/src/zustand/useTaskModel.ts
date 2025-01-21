@@ -18,7 +18,7 @@ export const useTaskModel = create<TaskModelState & TaskModelActions>(
     isModelOpen: false,
     task: undefined,
     type: "New",
-    setTaskModelOpen: () => set({ isModelOpen: true }),
+    setTaskModelOpen: () => set({ isModelOpen: true, type: "New" }),
     onEditOpenTaskModel: (task) =>
       set({ task, type: "Edit", isModelOpen: true }),
     onModelClose: () =>

@@ -10,8 +10,20 @@ import SelectOption from "../SelectOption";
 
 const TaskModel = () => {
   const { methods, onTaskSubmit, isModelOpen, onModelClose } = useTask();
+  const handleModelClose = () => {
+    methods.reset({
+      id: "",
+      title: "",
+      description: "",
+      dueDate: "",
+      priority: "Medium",
+      status: "In-progress",
+    });
+    onModelClose();
+  };
+
   return (
-    <Dialog open={isModelOpen} onOpenChange={onModelClose}>
+    <Dialog open={isModelOpen} onOpenChange={handleModelClose}>
       <DialogContent className="h-auto w-auto max-w-full overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
@@ -55,7 +67,7 @@ const TaskModel = () => {
                 />
               </div>
             </div>
-            <div className="flex justify-end mt-2">
+            <div className="flex justify-end mt-4">
               <Button type="submit">Save</Button>
             </div>
           </form>

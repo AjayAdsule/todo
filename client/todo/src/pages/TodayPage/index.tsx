@@ -7,23 +7,29 @@ import { TodosByStatus } from "@/types/task.type";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-const validParams = ["today", "tomorrow", "next-sevenday"];
+const validParams = [
+  "today",
+  "tomorrow",
+  "next-sevenday",
+  "work",
+  "workout",
+  "learning",
+  "reading",
+];
 const TodayPage = () => {
-  const { day } = useParams<{ day: string }>();
-  const { data } = useGetTaskData(day);
+  const { day, category } = useParams<{ day: string; category: string }>();
+  const page = day || category;
+
+  const { data } = useGetTaskData(page);
+
   const [activeTab, setActiveTab] = useState("Progress");
 
-  if (!validParams.includes(day)) {
+  if (!validParams.includes(page as string)) {
     return;
   }
   return (
     <MainContainer>
-      <PageHeader
-        title={day}
-        onClick={() => {
-          return;
-        }}
-      />
+      <PageHeader title={page} />
       <TaskTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       <div className="mt-4 flex flex-col gap-y-4">
         {data?.todo[activeTab as keyof TodosByStatus] &&

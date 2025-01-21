@@ -33,10 +33,9 @@ export const router = createBrowserRouter([
         path: "main/:day",
         element: <TodayPage />,
       },
-
       {
-        path: ":list",
-        element: <ListDynamicPage />,
+        path: "list/:category",
+        element: <TodayPage />,
       },
     ],
   },
