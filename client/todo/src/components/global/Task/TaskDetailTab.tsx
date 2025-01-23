@@ -27,7 +27,10 @@ const TaskDetailTab = () => {
           <p className="text-xs text-foreground">My Work Task</p>
           <div className="task_details flex flex-col gap-y-1 mt-2 font-semibold">
             <h2 className="text-xl">{task?.title}</h2>
-            <TaskDescription description={task.description} />
+            <TaskDescription
+              description={task.description}
+              descriptionLength={200}
+            />
           </div>
           <div className="mt-6 flex flex-col gap-y-4  ">
             <TaskInfo label="Date" value={task.dueDate} />

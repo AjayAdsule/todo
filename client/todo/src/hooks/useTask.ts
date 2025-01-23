@@ -2,8 +2,8 @@ import apiRequest from "@/lib/axios/axiosConfig";
 import { Category, useTaskModel } from "@/zustand/useTaskModel";
 import { useMutation } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import { useEffect } from "react";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 type Priority = "High" | "Medium" | "Low";
@@ -45,7 +45,7 @@ export default function useTask() {
         });
       }
     }
-  }, [type]);
+  }, [task]);
 
   useEffect(() => {
     if (category && type === "New") {

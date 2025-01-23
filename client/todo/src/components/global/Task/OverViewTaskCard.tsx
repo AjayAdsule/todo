@@ -1,9 +1,10 @@
 import { EllipsisVertical } from "lucide-react";
+import TaskDescription from "./TaskDescription";
 
 interface TaskCardProps {
   title: string;
   description: string;
-  date: string;
+  date: string | Date;
   onClick(): void;
 }
 
@@ -15,17 +16,19 @@ const TaskCard: React.FC<TaskCardProps> = ({
 }) => {
   return (
     <div
-      className="bg-[#f3f4f6]/30 rounded-lg border max-h-[300px] w-[90%] shadow-sm  p-2"
+      className="bg-white shadow-lg rounded-lg border cursor-pointer  max-h-[300px] w-[95%]   p-2"
       onClick={onClick}
     >
       <div className="flex items-center justify-between">
         <h4 className="font-semibold">{title}</h4>
-        <EllipsisVertical size={17} />
+        <div>
+          <EllipsisVertical size={17} />
+        </div>
       </div>
-      <div className="text-sm  mt-3 max-h-28 overflow-hidden text-ellipsis ">
-        {description}
-      </div>
-      <p className="mt-2 text-sm">{date}</p>
+
+      <TaskDescription description={description} descriptionLength={80} />
+
+      <p className="mt-2 text-sm">{typeof date === "string" ? date : ""}</p>
     </div>
   );
 };

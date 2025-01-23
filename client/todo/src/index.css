@@ -123,3 +123,21 @@
     font-family: "Nunito", "Roboto", sans-serif;
   }
 }
+
+/* styles.css or your custom CSS file */
+::-webkit-scrollbar {
+  width: 0.4rem; /* width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e4e4e7; /* color of the scrollbar */
+  border-radius: 6px; /* roundness of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* color of the scrollbar on hover */
+}

@@ -1,10 +1,18 @@
 import { useState } from "react";
 
-const TaskDescription = ({ description }: { description: string }) => {
+const TaskDescription = ({
+  description,
+  descriptionLength,
+}: {
+  description: string;
+  descriptionLength: number;
+}) => {
   const [seeMore, setSeeMore] = useState<boolean>(false);
 
-  if (description.length > 250) {
-    const sliceDescription = seeMore ? description : description.slice(0, 250);
+  if (description.length > descriptionLength) {
+    const sliceDescription = seeMore
+      ? description
+      : description.slice(0, descriptionLength);
     return (
       <p className="text-sm">
         {sliceDescription}

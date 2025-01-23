@@ -1,16 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import usePages from "@/hooks/usePages";
 import useTask from "@/hooks/useTask";
 import { InputCalender } from "@/pages/overviewPage/components/InputCalender";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { Controller, FormProvider } from "react-hook-form";
+import SelectOption from "../SelectOption";
 import AddTask from "./AddTask";
 import TaskPriority from "./TaskPriority";
-import SelectOption from "../SelectOption";
-import usePages from "@/hooks/usePages";
 
 const TaskModel = () => {
   const { methods, onTaskSubmit, isModelOpen, onModelClose } = useTask();
+
   const handleModelClose = () => {
     methods.reset({
       id: "",
@@ -23,6 +24,7 @@ const TaskModel = () => {
     });
     onModelClose();
   };
+
   const { isCategoryPage } = usePages();
 
   return (
@@ -31,6 +33,7 @@ const TaskModel = () => {
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
         </DialogHeader>
+
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onTaskSubmit)}>
             <div className="flex  justify-between mt-2 gap-x-3">
