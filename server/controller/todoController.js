@@ -3,7 +3,7 @@ import TodoModel from "../model/todoModel.js";
 export const createTask = async (req, res) => {
   try {
     const { userId } = req;
-    const { title, description, dueDate, category } = req.body;
+    const { title, description, dueDate, category, status } = req.body;
 
     const createTask = new TodoModel({
       title,
@@ -11,6 +11,7 @@ export const createTask = async (req, res) => {
       dueDate,
       userId,
       category,
+      status,
     });
 
     await createTask.save();
@@ -28,7 +29,7 @@ export const createTask = async (req, res) => {
   }
 };
 
-export const updateTodoStatus = async (req, res) => {
+export const updateTodo = async (req, res) => {
   try {
     const { userId } = req;
     const { id, ...updatedFeild } = req.body;
