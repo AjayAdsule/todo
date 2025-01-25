@@ -39,7 +39,7 @@ const MainTaskPage = () => {
             <ReactTaskCard key={tasks._id} tasks={tasks} />
           ))}
       </div>
-      {!data?.todo?.length && <NoTask />}
+      {!data?.todo[activeTab as keyof TodosByStatus].length && <NoTask />}
     </MainContainer>
   );
 };

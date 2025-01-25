@@ -92,7 +92,7 @@ export const getTodo = async (req, res) => {
       return res.status(201).json({
         message: "No todos found for this user",
         success: false,
-        todo: [],
+        todo: { Completed: [], Progress: [], Pending: [] },
       });
     }
     const filterTodo = todos.reduce((acc, curr) => {
