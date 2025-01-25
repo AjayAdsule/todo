@@ -1,9 +1,9 @@
 import BaseComponent from "@/BaseComponent";
 import Layout from "@/components/global/Layout";
+import MainTaskPage from "@/pages/MainTaskPage";
 import OverviewPage from "@/pages/overviewPage";
 import SignInPage from "@/pages/SignIn";
 import SignUpPage from "@/pages/signUp";
-import TodayPage from "@/pages/TodayPage";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -29,11 +29,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "main/:day",
-        element: <TodayPage />,
+        element: <MainTaskPage />,
       },
       {
         path: "list/:category",
-        element: <TodayPage />,
+        element: <MainTaskPage />,
       },
     ],
   },
