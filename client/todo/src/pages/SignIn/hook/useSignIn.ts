@@ -44,7 +44,7 @@ export default function useSignIn() {
         const token = data.token;
         localStorage.setItem("token", token);
         setAxiosAuthHeader(token);
-        navigate("/todo/home");
+        navigate("/todo/overview");
       }
     },
   });

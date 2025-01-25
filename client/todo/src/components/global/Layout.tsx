@@ -1,4 +1,5 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { setAxiosAuthHeader } from "@/lib/axios/axiosConfig";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { AppSidebar } from "./SideBar/AppSideBar";
