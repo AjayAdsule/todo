@@ -1,15 +1,16 @@
 import apiRequest from "@/lib/axios/axiosConfig";
 import { Category, useTaskModel } from "@/zustand/useTaskModel";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import usePages from "./usePages";
 
 type Priority = "High" | "Medium" | "Low";
 
 interface FormProps {
-  id?: string;
+  _id?: string;
   title: string;
   description: string;
   dueDate: Date | string;
@@ -20,6 +21,12 @@ interface FormProps {
 
 export default function useTask() {
   const { isModelOpen, onModelClose, task, type, category } = useTaskModel();
+  const { isMainPage, mainPagesRoute, listPageRoute } = usePages();
+
+  const api = useQueryClient();
+
+  const invalidateQueryKey = isMainPage ? mainPagesRoute : listPageRoute;
+
   const methods = useForm<FormProps>({
     defaultValues: {
       id: "",
@@ -59,11 +66,19 @@ export default function useTask() {
         const res = await apiRequest.post("/todo/create-task", data);
         return res.data;
       } else if (type === "Edit" && task?._id) {
-        const response = await apiRequest.patch(`/todo/edit-task`, data);
+        const response = await apiRequest.patch(`/todo/edit-task`, {
+          ...data,
+          id: data?._id,
+        });
         return response.data;
       } else {
         throw new Error("Invalid type or missing task ID for edit");
       }
+    },
+    onSuccess: () => {
+      console.log(invalidateQueryKey);
+      api.invalidateQueries({ queryKey: ["todo", invalidateQueryKey] });
+      onModelClose();
     },
   });
 

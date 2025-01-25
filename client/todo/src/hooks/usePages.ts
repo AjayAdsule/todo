@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 
+const categoryPage = ["work", "workout", "learning", "reading"];
+const mainPage = ["next-sevenday", "tomorrow", "today"];
+
 export default function usePages() {
-  const { category, day } = useParams();
+  const { category: listPageRoute, day: mainPagesRoute } = useParams();
 
-  const categoryPage = ["work", "workout", "learning", "reading"];
-  const mainPage = ["next-sevenday", "tomorrow", "today"];
+  const isListPage = categoryPage.includes(listPageRoute as string);
+  const isMainPage = mainPage.includes(mainPagesRoute as string);
 
-  const isCategoryPage = categoryPage.includes(category as string);
-  const isMainPage = mainPage.includes(day as string);
-
-  return { isCategoryPage, isMainPage, category, day };
+  return { isListPage, isMainPage, listPageRoute, mainPagesRoute };
 }

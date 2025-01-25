@@ -9,12 +9,12 @@ interface PageHeaderProps {
 }
 
 const PageHeader = ({ title }: PageHeaderProps) => {
-  const { isCategoryPage, category } = usePages();
+  const { isListPage, listPageRoute } = usePages();
   const { setTaskModelOpen } = useTaskModel();
 
   const handleModelOpen = () => {
-    if (isCategoryPage) {
-      setTaskModelOpen(category as Category);
+    if (isListPage) {
+      setTaskModelOpen(listPageRoute as Category);
     } else {
       setTaskModelOpen();
     }

@@ -25,7 +25,7 @@ const TaskModel = () => {
     onModelClose();
   };
 
-  const { isCategoryPage } = usePages();
+  const { isListPage } = usePages();
 
   return (
     <Dialog open={isModelOpen} onOpenChange={handleModelClose}>
@@ -71,7 +71,7 @@ const TaskModel = () => {
                     />
                   )}
                 />
-                {!isCategoryPage && (
+                {!isListPage && (
                   <Controller
                     name="category"
                     render={({ field }) => (

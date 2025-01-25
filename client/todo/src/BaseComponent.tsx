@@ -4,8 +4,8 @@ import { setAxiosAuthHeader } from "./lib/axios/axiosConfig";
 
 const BaseComponent = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (!token) {
       navigate("/signin");
     }
