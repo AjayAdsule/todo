@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LoaderCircle } from "lucide-react";
 import { Controller } from "react-hook-form";
+import { NavLink } from "react-router-dom";
 import useSignIn from "../hook/useSignIn";
 
 const SignInCard = () => {
@@ -10,9 +11,9 @@ const SignInCard = () => {
     useSignIn();
 
   return (
-    <div className=" h-fit w-[450px] rounded-lg shadow-lg p-8   flex flex-col ">
-      <div className="flex justify-center">
-        <TasklystLogo height="60" width="120" />
+    <div className=" h-fit w-[450px] rounded-lg shadow-2xl p-6   flex flex-col ">
+      <div className="flex justify-center ">
+        <TasklystLogo height="40" width="120" />
       </div>
       <form
         className=" flex flex-col gap-y-4"
@@ -53,6 +54,17 @@ const SignInCard = () => {
           )}
         </Button>
       </form>
+      <div className=" mt-4 text-xs">
+        Don’t have an account?{" "}
+        <span>
+          <NavLink
+            className="text-xs ml-1 underline text-primary"
+            to={"/signup"}
+          >
+            Sign up
+          </NavLink>
+        </span>
+      </div>
     </div>
   );
 };

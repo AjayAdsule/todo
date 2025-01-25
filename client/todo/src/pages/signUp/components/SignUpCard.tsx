@@ -2,6 +2,7 @@ import TasklystLogo from "@/components/global/TaskListLogo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Controller } from "react-hook-form";
+import { NavLink } from "react-router-dom";
 import useSignUp from "../hook/useSignUp";
 
 const SignUpCard = () => {
@@ -45,6 +46,17 @@ const SignUpCard = () => {
         ))}
         <Button>Register</Button>
       </form>
+      <div className=" mt-4 text-xs">
+        Already have account?
+        <span>
+          <NavLink
+            className="text-xs ml-1 underline text-primary"
+            to={"/signin"}
+          >
+            Sign in
+          </NavLink>
+        </span>
+      </div>
     </div>
   );
 };
