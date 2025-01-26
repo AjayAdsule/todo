@@ -9,6 +9,7 @@ import {
   Zap,
 } from "lucide-react";
 
+import { AvatarImage } from "@/components/ui/avatar";
 import {
   Collapsible,
   CollapsibleContent,
@@ -26,6 +27,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import globalGetRequest from "@/lib/axios/services/globalGetRequest";
+import URLS from "@/lib/axios/URLS";
+import { UserLoginResponse } from "@/types/user/userResponse";
+import { Avatar } from "@radix-ui/react-avatar";
+import { useQuery } from "@tanstack/react-query";
 import { NavLink } from "react-router-dom";
 import TasklystLogo from "../TaskListLogo";
 
@@ -76,7 +82,16 @@ const listItems = [
   },
 ];
 
+interface UserResponse {
+  user: UserLoginResponse;
+}
+
 export function AppSidebar() {
+  const { data } = useQuery<UserResponse>({
+    queryFn: () => globalGetRequest({ url: URLS.getUser }),
+    queryKey: ["user"],
+  });
+
   return (
     <Sidebar className="shadow-xl">
       <SidebarHeader>
@@ -127,7 +142,23 @@ export function AppSidebar() {
           </SidebarGroup>
         </Collapsible>
       </SidebarContent>
-      <SidebarFooter>Footer</SidebarFooter>
+      {data?.user && (
+        <SidebarFooter>
+          <div className=" flex p-2 items-center">
+            <Avatar className="border rounded-full h-10 w-10">
+              <AvatarImage
+                src="https://github.com/shadcn.png"
+                alt="@shadcn"
+                className="rounded-full"
+              />
+            </Avatar>
+            <div className="flex flex-col text-xs ml-2 text-black">
+              <h5 className="text-md">{data?.user?.name}</h5>
+              <p>{data?.user?.email}</p>
+            </div>
+          </div>
+        </SidebarFooter>
+      )}
     </Sidebar>
   );
 }

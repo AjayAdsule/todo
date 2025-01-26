@@ -1,4 +1,4 @@
-import globalGetRequest from "@/lib/axios/services/globlGetRequest";
+import globalGetRequest from "@/lib/axios/services/globalGetRequest";
 import URLS from "@/lib/axios/URLS";
 import { TaskResponse } from "@/types/task.type";
 import { useQuery } from "@tanstack/react-query";
