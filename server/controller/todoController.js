@@ -94,6 +94,7 @@ export const getTodo = async (req, res) => {
         message: "No todos found for this user",
         success: false,
         todo: { Completed: [], Progress: [], Pending: [] },
+        taskLength: 0,
       });
     }
     const filterTodo = todos.reduce((acc, curr) => {
