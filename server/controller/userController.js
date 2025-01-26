@@ -11,11 +11,12 @@ export const userSignin = async (req, res) => {
         .status(406)
         .json({ success: false, message: "User is not found please register" });
     }
-    const matchPassword = bcrypt.compare(password, user.password);
+    const matchPassword = await bcrypt.compare(password, user.password);
+
     if (!matchPassword) {
       return res
         .status(406)
-        .json({ success: false, message: "Password is not match" });
+        .json({ success: false, message: "Incorrect Password" });
     }
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY);
     return res.status(200).json({ success: true, user, token });
