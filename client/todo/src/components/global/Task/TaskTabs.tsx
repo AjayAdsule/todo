@@ -1,8 +1,9 @@
+import { ActiveTab } from "@/types/task.type";
 import React from "react";
 
 interface TaskTabProps {
-  activeTab: "Progress" | "Pending" | "Completed";
-  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+  activeTab: ActiveTab;
+  setActiveTab: React.Dispatch<React.SetStateAction<ActiveTab>>;
 }
 
 const TaskTabs: React.FC<TaskTabProps> = ({ activeTab, setActiveTab }) => {

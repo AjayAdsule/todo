@@ -22,3 +22,5 @@ export interface TaskResponse {
   todo: TodosByStatus;
   taskLength: number;
 }
+
+export type ActiveTab = "Progress" | "Pending" | "Completed";

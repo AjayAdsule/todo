@@ -1,10 +1,11 @@
 import MainContainer from "@/components/global/MainContainer";
 import PageHeader from "@/components/global/PageHeader";
+import NotFound from "@/components/global/PageNotFound";
 import NoTask from "@/components/global/Task/NoTask";
 import ReactTaskCard from "@/components/global/Task/ReactTaskCard";
 import TaskTabs from "@/components/global/Task/TaskTabs";
 import useGetTaskData from "@/query/useGetTaskData";
-import { TodosByStatus } from "@/types/task.type";
+import { ActiveTab, TodosByStatus } from "@/types/task.type";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -23,10 +24,10 @@ const MainTaskPage = () => {
 
   const { data } = useGetTaskData(page);
 
-  const [activeTab, setActiveTab] = useState("Progress");
+  const [activeTab, setActiveTab] = useState<ActiveTab>("Progress");
 
   if (!validParams.includes(page as string)) {
-    return;
+    return <NotFound />;
   }
 
   return (
