@@ -11,8 +11,8 @@ const NoTask = () => {
       </div>
       <h5 className="font-semibold text-md">Have a marvelous day off, Ajay!</h5>
       <div className="text-center text-sm text-gray-500 mt-1">
-        Schedule days off in the Productivity tab <br />
-        <span>of your Settings menu.</span>
+        Schedule days off in the new Task button <br />
+        <span>of your top right side.</span>
       </div>
     </div>
   );

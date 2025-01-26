@@ -20,4 +20,5 @@ export interface TaskResponse {
   success: boolean;
   message: string;
   todo: TodosByStatus;
+  taskLength: number;
 }

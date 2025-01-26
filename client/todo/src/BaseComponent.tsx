@@ -5,6 +5,7 @@ import { setAxiosAuthHeader } from "./lib/axios/axiosConfig";
 const BaseComponent = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  console.log("render basecomponent");
   useEffect(() => {
     if (!token) {
       navigate("/signin");
@@ -14,9 +15,9 @@ const BaseComponent = () => {
       setAxiosAuthHeader(token);
       navigate("/todo/overview");
     }
-  }, []);
+  }, [token]);
 
-  return <div>BaseComponent</div>;
+  return <></>;
 };
 
 export default BaseComponent;

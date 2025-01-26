@@ -1,7 +1,7 @@
 import React from "react";
 
 interface TaskTabProps {
-  activeTab: string;
+  activeTab: "Progress" | "Pending" | "Completed";
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }
 

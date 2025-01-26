@@ -76,8 +76,8 @@ export default function useTask() {
       }
     },
     onSuccess: () => {
-      console.log(invalidateQueryKey);
       api.invalidateQueries({ queryKey: ["todo", invalidateQueryKey] });
+      methods.reset();
       onModelClose();
     },
   });

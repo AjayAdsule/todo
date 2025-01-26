@@ -23,7 +23,7 @@ const PageHeader = ({ title }: PageHeaderProps) => {
   return (
     <div className="flex justify-between w-full  mt-3">
       <div>
-        <h1 className="text-xl font-semibold">{title}</h1>
+        <h1 className="text-xl font-semibold capitalize">{title}</h1>
       </div>
       <div>
         <Button

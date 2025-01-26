@@ -3,12 +3,23 @@ import TaskContainer from "@/components/global/Task/TaskContainer";
 import useGetTaskData from "@/query/useGetTaskData";
 import { TodosByStatus } from "@/types/task.type";
 
+import NoTask from "@/components/global/Task/NoTask";
 import { useTaskModel } from "@/zustand/useTaskModel";
 import TaskFilter from "./TaskFilter";
 
 const TaskInfo = () => {
   const { data } = useGetTaskData("overview");
   const { onEditOpenTaskModel } = useTaskModel();
+  console.log(data?.taskLength);
+
+  if (data?.taskLength === 0) {
+    return (
+      <div className="flex justify-center items-center h-[80vh]">
+        <NoTask />
+      </div>
+    );
+  }
+
   return (
     <div className="mt-3">
       <div>
