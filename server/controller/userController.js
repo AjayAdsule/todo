@@ -54,3 +54,20 @@ export const userSignup = async (req, res) => {
     res.status(406).json({ success: false, message: "something went wrong" });
   }
 };
+
+export const getUser = async (req, res) => {
+  try {
+    const { userId } = req;
+
+    const user = await UserModal.findById(userId);
+
+    if (!user) {
+      return res
+        .status(406)
+        .json({ success: false, message: "User is not found" });
+    }
+    return res.status(200).json({ success: true, user });
+  } catch (error) {
+    res.status(406).json({ success: false, message: "something went wrong" });
+  }
+};
