@@ -1,7 +1,6 @@
 import TasklystLogo from "@/components/global/TaskListLogo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { LoaderCircle } from "lucide-react";
 import { Controller } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import useSignIn from "../hook/useSignIn";
@@ -46,12 +45,8 @@ const SignInCard = () => {
             )}
           </div>
         ))}
-        <Button type="submit">
-          {isLoading ? (
-            <LoaderCircle className={`${isLoading && "animate-spin"}`} />
-          ) : (
-            "Login"
-          )}
+        <Button type="submit" loading={isLoading}>
+          Sign in
         </Button>
       </form>
       <div className=" mt-4 text-xs">

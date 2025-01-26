@@ -1,3 +1,4 @@
+import { useToast } from "@/hooks/use-toast";
 import { setAxiosAuthHeader } from "@/lib/axios/axiosConfig";
 import globalPostRequest from "@/lib/axios/services/globalPostRequest";
 import URLS from "@/lib/axios/URLS";
@@ -35,8 +36,8 @@ export default function useSignIn() {
   });
 
   const navigate = useNavigate();
-
-  const { mutate, isPending } = useMutation({
+  const { toast } = useToast();
+  const { mutate, isPending: isLoading } = useMutation({
     mutationFn: (data: SignInType) =>
       globalPostRequest<SignInType, SigninResponse>({ url: URLS.signIn, data }),
     onSuccess: (data) => {
@@ -47,6 +48,8 @@ export default function useSignIn() {
         navigate("/todo/overview");
       }
     },
+    onError: (err) =>
+      toast({ description: err.message, variant: "destructive" }),
   });
 
   const signFormSchema: SignInFormSchema[] = [
@@ -71,9 +74,9 @@ export default function useSignIn() {
   return {
     signFormSchema,
     control,
+    isLoading,
     handleSubmit,
     onSignin,
-    isLoading: isPending,
     errors,
   };
 }

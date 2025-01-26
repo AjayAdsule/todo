@@ -6,8 +6,14 @@ import { NavLink } from "react-router-dom";
 import useSignUp from "../hook/useSignUp";
 
 const SignUpCard = () => {
-  const { control, signUpFormSchema, errors, handleSubmit, onSignUpSubmit } =
-    useSignUp();
+  const {
+    control,
+    signUpFormSchema,
+    errors,
+    isLoading,
+    handleSubmit,
+    onSignUpSubmit,
+  } = useSignUp();
   return (
     <div className=" h-fit w-[450px] rounded-lg shadow-lg p-8   flex flex-col ">
       <div className="flex justify-center">
@@ -44,7 +50,9 @@ const SignUpCard = () => {
             )}
           </div>
         ))}
-        <Button>Register</Button>
+        <Button loading={isLoading} type="submit">
+          Register
+        </Button>
       </form>
       <div className=" mt-4 text-xs">
         Already have account?

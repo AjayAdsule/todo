@@ -6,6 +6,14 @@ interface PostRequest<DataType = unknown> {
   options?: Record<string, string>;
 }
 
+interface AxiosErrorResponse {
+  response?: {
+    data: {
+      message: string;
+    };
+  };
+}
+
 const globalPostRequest = async <DataType, ResponseType>({
   url,
   data,
@@ -18,7 +26,10 @@ const globalPostRequest = async <DataType, ResponseType>({
     return res.data;
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(error.message);
+      const axiosError = error as Error & AxiosErrorResponse;
+      if (axiosError.response) {
+        throw new Error(axiosError.response.data.message);
+      }
     }
     throw error;
   }

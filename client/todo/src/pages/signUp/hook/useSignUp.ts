@@ -46,7 +46,7 @@ export default function useSignUp() {
   });
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { mutate: signupMutate } = useMutation({
+  const { mutate: signupMutate, isPending: isLoading } = useMutation({
     mutationFn: (data: SignUpType) =>
       globalPostRequest<SignUpType, UserSignUpRespnse>({
         url: URLS.signUp,
@@ -59,12 +59,9 @@ export default function useSignUp() {
         });
         navigate("/signin");
       }
-      if (!data.success) {
-        toast({
-          description: data.message,
-        });
-      }
     },
+    onError: (err) =>
+      toast({ description: err.message, variant: "destructive" }),
   });
 
   const signUpFormSchema: SignUpFormSchema[] = [
@@ -102,6 +99,7 @@ export default function useSignUp() {
     signUpFormSchema,
     control,
     errors,
+    isLoading,
     handleSubmit,
     onSignUpSubmit,
   };
