@@ -7,7 +7,7 @@ interface TaskTabProps {
 }
 
 const TaskTabs: React.FC<TaskTabProps> = ({ activeTab, setActiveTab }) => {
-  const TABS = ["Progress", "Pending", "Completed"];
+  const TABS: ActiveTab[] = ["Progress", "Pending", "Completed"];
 
   return (
     <div className="flex gap-x-3 mt-3">
