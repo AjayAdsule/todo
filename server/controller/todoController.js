@@ -64,7 +64,7 @@ export const updateTodo = async (req, res) => {
 export const getTodo = async (req, res) => {
   try {
     const { userId } = req;
-    const { category, filterBy } = req.query;
+    const { category, filterBy, search } = req.query;
 
     const filter = { userId };
 
@@ -85,6 +85,13 @@ export const getTodo = async (req, res) => {
         $gte: today,
         $lte: nextSevenDay,
       };
+    }
+
+    if (search) {
+      filter.$or = [
+        { title: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+      ];
     }
 
     const todos = await TodoModel.find({ ...filter });

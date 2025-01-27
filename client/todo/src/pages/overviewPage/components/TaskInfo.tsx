@@ -8,9 +8,8 @@ import { useTaskModel } from "@/zustand/useTaskModel";
 import TaskFilter from "./TaskFilter";
 
 const TaskInfo = () => {
-  const { data } = useGetTaskData("overview");
+  const { data, setSearchParam } = useGetTaskData("overview");
   const { onEditOpenTaskModel } = useTaskModel();
-  console.log(data?.taskLength);
 
   if (data?.taskLength === 0) {
     return (
@@ -23,7 +22,7 @@ const TaskInfo = () => {
   return (
     <div className="mt-3">
       <div>
-        <TaskFilter />
+        <TaskFilter setSearchParam={setSearchParam} />
       </div>
       <div className="flex mt-2 justify-between gap-x-12">
         {data?.todo &&
@@ -43,7 +42,7 @@ const TaskInfo = () => {
                       title={title}
                       description={description}
                       date={dueDate}
-                      onClick={() => onEditOpenTaskModel(task)}
+                      onEdit={() => onEditOpenTaskModel(task)}
                     />
                   );
                 })}
