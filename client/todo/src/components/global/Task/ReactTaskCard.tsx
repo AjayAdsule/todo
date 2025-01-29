@@ -65,7 +65,7 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
         <div className="card_details mt-2">
           <span className="flex text-xs items-center gap-x-1">
             <CalendarDays size={12} />
-            {tasks.dueDate}
+            {tasks.dueDate as string}
           </span>
           <div className="flex gap-x-2 mt-2">
             <Badge variant={"outline"}>

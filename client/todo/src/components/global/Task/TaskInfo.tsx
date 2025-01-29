@@ -9,7 +9,7 @@ const TaskInfo = ({
   label: string;
   value?: string;
   badge?: boolean;
-  variant?: "danger" | "active" | "success" | "secondary";
+  variant?: "danger" | "active" | "success" | "secondary" | undefined;
 }) => {
   return (
     <div className="flex gap-x-8  items-center">

@@ -1,4 +1,4 @@
-import { EllipsisVertical, Pen, Trash } from "lucide-react";
+import { Pen, Trash } from "lucide-react";
 import TaskDescription from "./TaskDescription";
 
 interface TaskCardProps {

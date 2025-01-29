@@ -1,12 +1,12 @@
 import { Input } from "@/components/ui/input";
-import { InputCalender } from "./InputCalender";
 import useTaskFilter from "@/hooks/useTaskFilters";
 import { Controller } from "react-hook-form";
+import { InputCalender } from "./InputCalender";
 
 const TaskFilter = ({
   setSearchParam,
 }: {
-  setSearchParam: React.Dispatch<React.SetStateAction<string>>;
+  setSearchParam: React.Dispatch<React.SetStateAction<string | undefined>>;
 }) => {
   const { control } = useTaskFilter({ setSearchParam });
 

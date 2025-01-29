@@ -4,7 +4,7 @@ import useDebounce from "./useDebounce";
 export default function useTaskFilter({
   setSearchParam,
 }: {
-  setSearchParam: React.Dispatch<React.SetStateAction<string>>;
+  setSearchParam: React.Dispatch<React.SetStateAction<string | undefined>>;
 }) {
   const { control, watch } = useForm({
     defaultValues: { search: "", date: "" },

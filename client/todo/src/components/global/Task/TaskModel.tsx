@@ -14,7 +14,7 @@ const TaskModel = () => {
 
   const handleModelClose = () => {
     methods.reset({
-      id: "",
+      _id: "",
       title: "",
       description: "",
       dueDate: "",
