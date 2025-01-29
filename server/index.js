@@ -27,3 +27,4 @@ connectDB();
 app.listen(port, () => {
   console.log(`server is running on 3000`);
 });
+export default app;
