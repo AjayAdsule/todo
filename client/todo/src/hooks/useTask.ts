@@ -13,7 +13,7 @@ interface FormProps {
   _id?: string;
   title: string;
   description: string;
-  dueDate: Date | string;
+  dueDate?: Date;
   priority?: Priority;
   status: "In-progress" | "Pending" | "Completed";
   category?: Category;
@@ -32,7 +32,7 @@ export default function useTask() {
       _id: "",
       title: "",
       description: "",
-      dueDate: "",
+      dueDate: undefined,
       priority: "Medium",
       status: "In-progress",
       category: category,
@@ -43,14 +43,10 @@ export default function useTask() {
 
   useEffect(() => {
     if (type === "Edit") {
-      if (task?.dueDate && task) {
-        const date = dayjs(task?.dueDate, "DD-MM-YYYY");
-
-        methods.reset({
-          ...task,
-          dueDate: date.format(),
-        });
-      }
+      console.log(task);
+      methods.reset({
+        ...task,
+      });
     }
   }, [task]);
 
@@ -83,10 +79,8 @@ export default function useTask() {
   });
 
   const onTaskSubmit = (data: FormProps) => {
-    const date = dayjs(data.dueDate).format("DD-MM-YYYY");
     mutate({
       ...data,
-      dueDate: date,
     });
   };
 

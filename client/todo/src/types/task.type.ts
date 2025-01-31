@@ -3,7 +3,7 @@ export interface Todo {
   title: string;
   description: string;
   status: "Completed" | "Pending" | "In-progress";
-  dueDate: string | Date;
+  dueDate: Date;
   userId: string;
   createdAt: string;
   priority: "High" | "Medium" | "Low";

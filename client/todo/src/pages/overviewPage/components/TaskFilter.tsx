@@ -31,7 +31,9 @@ const TaskFilter = ({
       <Controller
         name="date"
         control={control}
-        render={({ field }) => <InputCalender {...field} />}
+        render={({ field }) => (
+          <InputCalender value={field.value} onChange={field.onChange} />
+        )}
       />
     </div>
   );

@@ -8,6 +8,7 @@ import { Todo } from "@/types/task.type";
 import useTaskLayout from "@/zustand/useTaskLayout";
 import { useTaskModel } from "@/zustand/useTaskModel";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import dayjs from "dayjs";
 import { CalendarDays, Pen, Trash } from "lucide-react";
 import { useState } from "react";
 import StatusBadge from "./StatusBadge";
@@ -65,7 +66,7 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
         <div className="card_details mt-2">
           <span className="flex text-xs items-center gap-x-1">
             <CalendarDays size={12} />
-            {tasks.dueDate as string}
+            {dayjs(tasks.dueDate).format("DD-MM-YYYY")}
           </span>
           <div className="flex gap-x-2 mt-2">
             <Badge variant={"outline"}>

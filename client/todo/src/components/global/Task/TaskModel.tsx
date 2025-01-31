@@ -17,7 +17,7 @@ const TaskModel = () => {
       _id: "",
       title: "",
       description: "",
-      dueDate: "",
+      dueDate: undefined,
       priority: "Medium",
       status: "In-progress",
       category: "work",

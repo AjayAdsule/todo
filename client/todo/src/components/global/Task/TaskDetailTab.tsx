@@ -33,7 +33,7 @@ const TaskDetailTab = () => {
             />
           </div>
           <div className="mt-6 flex flex-col gap-y-4  ">
-            <TaskInfo label="Date" value={task.dueDate as string} />
+            <TaskInfo label="Date" value={task.dueDate} />
             <TaskInfo label="Type" value="Daily Task" />
             <TaskInfo
               label="Priority"
