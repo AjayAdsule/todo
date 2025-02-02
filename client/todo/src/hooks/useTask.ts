@@ -21,11 +21,15 @@ interface FormProps {
 
 export default function useTask() {
   const { isModelOpen, onModelClose, task, type, category } = useTaskModel();
-  const { isMainPage, mainPagesRoute, listPageRoute } = usePages();
+  const { isMainPage, mainPagesRoute, listPageRoute, isListPage } = usePages();
 
   const api = useQueryClient();
 
-  const invalidateQueryKey = isMainPage ? mainPagesRoute : listPageRoute;
+  const invalidateQueryKey = isMainPage
+    ? mainPagesRoute
+    : isListPage
+    ? listPageRoute
+    : "overview";
 
   const methods = useForm<FormProps>({
     defaultValues: {
@@ -72,7 +76,8 @@ export default function useTask() {
       }
     },
     onSuccess: () => {
-      api.invalidateQueries({ queryKey: ["todo", invalidateQueryKey] });
+      console.log({ invalidateQueryKey });
+      api.invalidateQueries({ queryKey: ["todo", invalidateQueryKey, null] });
       methods.reset();
       onModelClose();
     },

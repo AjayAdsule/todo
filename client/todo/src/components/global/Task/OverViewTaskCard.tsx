@@ -1,10 +1,11 @@
+import dayjs from "dayjs";
 import { Pen, Trash } from "lucide-react";
 import TaskDescription from "./TaskDescription";
 
 interface TaskCardProps {
   title: string;
   description: string;
-  date: string | Date;
+  date: Date;
   onEdit(): void;
 }
 
@@ -12,7 +13,6 @@ const TaskCard: React.FC<TaskCardProps> = ({
   title,
   description,
   date,
-
   onEdit,
 }) => {
   return (
@@ -29,7 +29,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
 
       <TaskDescription description={description} descriptionLength={80} />
 
-      <p className="mt-2 text-sm">{typeof date === "string" ? date : ""}</p>
+      <p className="mt-2 text-sm">{dayjs(date).format("DD-MM-YYYY")}</p>
     </div>
   );
 };
