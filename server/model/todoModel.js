@@ -26,7 +26,7 @@ const TodoModel = new Schema({
     default: "Medium",
   },
   dueDate: {
-    type: String,
+    type: Date,
   },
   userId: {
     type: Schema.Types.ObjectId,

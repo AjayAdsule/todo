@@ -73,14 +73,22 @@ export const getTodo = async (req, res) => {
     }
 
     if (filterBy === "today") {
-      const today = dayjs().format("DD-MM-YYYY");
-      filter.dueDate = today;
+      const today = dayjs().startOf("day").toDate();
+      const tomorrow = dayjs().endOf("day").toDate();
+      filter.dueDate = {
+        $gte: today,
+        $lte: tomorrow,
+      };
     } else if (filterBy === "tomorrow") {
-      const date = dayjs().add(1, "day").format("DD-MM-YYYY");
-      filter.dueDate = date;
+      const tomorrowStart = dayjs().add(1, "day").startOf("day").toDate();
+      const tomorrowEnd = dayjs().add(1, "day").endOf("day").toDate();
+      filter.dueDate = {
+        $gte: tomorrowStart,
+        $lte: tomorrowEnd,
+      };
     } else if (filterBy === "next-sevenday") {
-      const nextSevenDay = dayjs().add(7, "day").format("DD-MM-YYYY");
-      const today = dayjs().format("DD-MM-YYYY");
+      const today = dayjs().startOf("day").toDate();
+      const nextSevenDay = dayjs().add(7, "day").endOf("day").toDate();
       filter.dueDate = {
         $gte: today,
         $lte: nextSevenDay,
@@ -93,7 +101,7 @@ export const getTodo = async (req, res) => {
         { description: { $regex: search, $options: "i" } },
       ];
     }
-
+    console.log(filter);
     const todos = await TodoModel.find({ ...filter });
 
     if (!todos || todos.length === 0) {

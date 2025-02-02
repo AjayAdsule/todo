@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "*",
+    origin: process.env.ENVIORMENT === "Prod" ? process.env.FRONTEND_URL : "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
