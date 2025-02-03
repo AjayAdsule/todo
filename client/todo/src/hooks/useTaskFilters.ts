@@ -3,7 +3,6 @@ import useDebounce from "./useDebounce";
 
 interface TaskFilterFormProps {
   search: string;
-  date?: Date;
 }
 
 export default function useTaskFilter({
@@ -12,7 +11,7 @@ export default function useTaskFilter({
   setSearchParam: React.Dispatch<React.SetStateAction<string | undefined>>;
 }) {
   const { control, watch } = useForm<TaskFilterFormProps>({
-    defaultValues: { search: "", date: undefined },
+    defaultValues: { search: "" },
   });
 
   const { search } = watch();

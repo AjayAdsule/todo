@@ -1,7 +1,6 @@
 import { Input } from "@/components/ui/input";
 import useTaskFilter from "@/hooks/useTaskFilters";
 import { Controller } from "react-hook-form";
-import { InputCalender } from "./InputCalender";
 
 const TaskFilter = ({
   setSearchParam,
@@ -11,7 +10,7 @@ const TaskFilter = ({
   const { control } = useTaskFilter({ setSearchParam });
 
   return (
-    <div className="flex justify-between mt-4 items-center ">
+    <div className="flex justify-end mt-4 items-center ">
       <div>
         <label htmlFor="Search" className="text-xs">
           Search
@@ -28,13 +27,6 @@ const TaskFilter = ({
           )}
         />
       </div>
-      <Controller
-        name="date"
-        control={control}
-        render={({ field }) => (
-          <InputCalender value={field.value} onChange={field.onChange} />
-        )}
-      />
     </div>
   );
 };
