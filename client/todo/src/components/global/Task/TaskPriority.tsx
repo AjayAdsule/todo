@@ -9,7 +9,7 @@ import { Flag } from "lucide-react";
 
 interface TaskPriorityProps {
   onChange(): void;
-  value: string;
+  value: string | undefined;
 }
 
 const TaskPriority: React.FC<TaskPriorityProps> = ({ onChange, value }) => {

@@ -2,14 +2,22 @@ import TaskCard from "@/components/global/Task/OverViewTaskCard";
 import TaskContainer from "@/components/global/Task/TaskContainer";
 import useGetTaskData from "@/query/useGetTaskData";
 import { TodosByStatus } from "@/types/task.type";
-
 import NoTask from "@/components/global/Task/NoTask";
 import { useTaskModel } from "@/zustand/useTaskModel";
 import TaskFilter from "./TaskFilter";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import globalPostRequest from "@/lib/axios/services/globalPostRequest";
+import URLS from "@/lib/axios/URLS";
 
 const TaskInfo = () => {
   const { data, setSearchParam } = useGetTaskData("overview");
   const { onEditOpenTaskModel } = useTaskModel();
+  const api = useQueryClient();
+  const { mutate: deleteTaskMutation } = useMutation({
+    mutationFn: ({ id }: { id: string }) =>
+      globalPostRequest({ url: URLS.deleteTask, data: { id } }),
+    onSuccess: () => api.invalidateQueries({ queryKey: ["todo", "overview"] }),
+  });
 
   if (data?.taskLength === 0) {
     return (
@@ -43,6 +51,7 @@ const TaskInfo = () => {
                       description={description}
                       date={dueDate}
                       onEdit={() => onEditOpenTaskModel(task)}
+                      onDelete={() => deleteTaskMutation({ id: _id })}
                     />
                   );
                 })}

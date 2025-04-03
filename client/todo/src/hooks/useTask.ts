@@ -6,6 +6,8 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import usePages from "./usePages";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type Priority = "High" | "Medium" | "Low";
 
@@ -18,6 +20,17 @@ interface FormProps {
   status: "In-progress" | "Pending" | "Completed";
   category?: Category;
 }
+
+const schema = z.object({
+  title: z.string().min(1, "Title is required"),
+  description: z.string().min(1, "Description is required"),
+  dueDate: z.date({ required_error: "Due date is required" }),
+  priority: z.string().min(1, "Priority is required"),
+  status: z.enum(["In-progress", "Pending", "Completed"], {
+    errorMap: () => ({ message: "Status is required" }),
+  }),
+  category: z.optional(z.enum(["work", "workout", "learning", "reading"])),
+});
 
 export default function useTask() {
   const { isModelOpen, onModelClose, task, type, category } = useTaskModel();
@@ -32,6 +45,7 @@ export default function useTask() {
     : "overview";
 
   const methods = useForm<FormProps>({
+    resolver: zodResolver(schema),
     defaultValues: {
       _id: "",
       title: "",
@@ -76,8 +90,7 @@ export default function useTask() {
       }
     },
     onSuccess: () => {
-      console.log({ invalidateQueryKey });
-      api.invalidateQueries({ queryKey: ["todo", invalidateQueryKey, null] });
+      api.invalidateQueries({ queryKey: ["todo", invalidateQueryKey] });
       methods.reset();
       onModelClose();
     },

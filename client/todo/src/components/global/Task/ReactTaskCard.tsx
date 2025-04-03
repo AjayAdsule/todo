@@ -24,7 +24,7 @@ const ReactTaskCard: React.FC<TaskProps> = ({ tasks }) => {
   const { mutate: deleteTaskMutation } = useMutation({
     mutationFn: ({ id }: { id: string }) =>
       globalPostRequest({ url: URLS.deleteTask, data: { id } }),
-    onSuccess: () => api.invalidateQueries({ queryKey: ["todos"] }),
+    onSuccess: () => api.invalidateQueries({ queryKey: ["todo"] }),
   });
 
   const [isCompleted, setIsCompleted] = useState(

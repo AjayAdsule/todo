@@ -7,6 +7,7 @@ interface TaskCardProps {
   description: string;
   date: Date;
   onEdit(): void;
+  onDelete():void
 }
 
 const TaskCard: React.FC<TaskCardProps> = ({
@@ -14,6 +15,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
   description,
   date,
   onEdit,
+  onDelete
 }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg border cursor-pointer  max-h-[300px] w-[95%]   p-2">
@@ -22,7 +24,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
         <div>
           <div className="flex gap-x-2 items-center">
             <Pen size={14} onClick={onEdit} />
-            <Trash size={14} className="text-destructive" />
+            <Trash size={14} className="text-destructive" onClick={onDelete}  />
           </div>
         </div>
       </div>

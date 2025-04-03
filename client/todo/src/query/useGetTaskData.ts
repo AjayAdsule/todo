@@ -21,7 +21,7 @@ export default function useGetTaskData(key?: string) {
   }
 
   const { data } = useQuery<TaskResponse>({
-    queryKey: [`todo`, key, searchParam ? searchParam : null],
+    queryKey: [`todo`, key, searchParam ? searchParam : undefined],
     queryFn: () => globalGetRequest({ url: URLS.getTodo, param: filters }),
   });
 

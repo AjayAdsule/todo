@@ -2,7 +2,6 @@ import cors from "cors";
 import dotEnv from "dotenv";
 import express, { urlencoded } from "express";
 import morgan from "morgan";
-
 import connectDB from "../Database/DB.js";
 import Routes from "./../Routes/routes.js";
 
@@ -26,6 +25,6 @@ app.use("/api/v1", Routes);
 connectDB();
 
 app.listen(port, () => {
-  console.log(`server is running on 3000`);
+  console.log(`server is running on ${port}`);
 });
 export default app;
