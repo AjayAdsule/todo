@@ -27,11 +27,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import globalGetRequest from "@/lib/axios/services/globalGetRequest";
-import URLS from "@/lib/axios/URLS";
-import { UserLoginResponse } from "@/types/user/userResponse";
+import useGetUser from "@/query/useGetUser";
 import { Avatar } from "@radix-ui/react-avatar";
-import { useQuery } from "@tanstack/react-query";
 import { NavLink } from "react-router-dom";
 import TasklystLogo from "../TaskListLogo";
 
@@ -82,18 +79,10 @@ const listItems = [
   },
 ];
 
-interface UserResponse {
-  user: UserLoginResponse;
-}
-
 export function AppSidebar() {
-  const { data } = useQuery<UserResponse>({
-    queryFn: () => globalGetRequest({ url: URLS.getUser }),
-    queryKey: ["user"],
-  });
-
+  const { data } = useGetUser();
   return (
-    <Sidebar className="shadow-xl">
+    <Sidebar className="h-screen shadow-md">
       <SidebarHeader>
         <TasklystLogo height="60" width="150" />
       </SidebarHeader>
