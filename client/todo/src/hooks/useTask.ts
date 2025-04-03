@@ -21,16 +21,23 @@ interface FormProps {
   category?: Category;
 }
 
-const schema = z.object({
-  title: z.string().min(1, "Title is required"),
-  description: z.string().min(1, "Description is required"),
-  dueDate: z.date({ required_error: "Due date is required" }),
-  priority: z.string().min(1, "Priority is required"),
-  status: z.enum(["In-progress", "Pending", "Completed"], {
-    errorMap: () => ({ message: "Status is required" }),
-  }),
-  category: z.optional(z.enum(["work", "workout", "learning", "reading"])),
-});
+const schema = z
+  .object({
+    title: z.string().min(1, "Title is required"),
+    description: z.string().min(1, "Description is required"),
+    dueDate: z.union([
+      z.date(),
+      z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: "Invalid date format",
+      }),
+    ]),
+    priority: z.string().min(1, "Priority is required"),
+    status: z.enum(["In-progress", "Pending", "Completed"], {
+      errorMap: () => ({ message: "Status is required" }),
+    }),
+    category: z.optional(z.enum(["work", "workout", "learning", "reading"])),
+  })
+  .passthrough();
 
 export default function useTask() {
   const { isModelOpen, onModelClose, task, type, category } = useTaskModel();
@@ -61,7 +68,6 @@ export default function useTask() {
 
   useEffect(() => {
     if (type === "Edit") {
-      console.log(task);
       methods.reset({
         ...task,
       });
@@ -70,7 +76,14 @@ export default function useTask() {
 
   useEffect(() => {
     if (category && type === "New") {
-      methods.reset({ category });
+      methods.reset({
+        _id: "",
+        title: "",
+        description: "",
+        dueDate: undefined,
+        priority: "Medium",
+        status: "In-progress",
+      });
     }
   }, [category]);
 
@@ -91,7 +104,14 @@ export default function useTask() {
     },
     onSuccess: () => {
       api.invalidateQueries({ queryKey: ["todo", invalidateQueryKey] });
-      methods.reset();
+      methods.reset({
+        _id: "",
+        title: "",
+        description: "",
+        dueDate: undefined,
+        priority: "Medium",
+        status: "In-progress",
+      });
       onModelClose();
     },
   });
